@@ -12,6 +12,25 @@ export const heroSlides = [
   { src: '/assets/project-birch.jpg', alt: 'Vista referencial de un espacio verde', caption: 'Un futuro que se construye juntos' },
 ];
 export const aboutImage = heroSlides[1];
+export const featuredProject = {
+  kicker: 'Datos generales',
+  name: 'Centro de Desarrollo Social - MUSA',
+  client: 'Municipalidad de La Molina',
+  country: 'Perú',
+  region: 'Lima',
+  aerial: {
+    src: '/assets/musa-aerial.jpg',
+    alt: 'Vista aérea del entorno urbano del predio en Lima',
+  },
+  campus: {
+    src: '/assets/musa-campus.jpg',
+    alt: 'Vista aérea del conjunto propuesto',
+  },
+  entrance: {
+    src: '/assets/musa-entrance.jpg',
+    alt: 'Acceso principal del conjunto propuesto',
+  },
+};
 export const projects = [
   {
     id: 'primera-iniciativa', title: 'Un primer espacio, muchas posibilidades',
@@ -31,6 +50,13 @@ export const projects = [
     note: 'Imagen referencial. No corresponde a una obra acreditada al equipo o a MUHU.',
     detail: 'La experiencia pertenece a los directores, no a MUHU. Las fichas individuales se incorporarán cuando se disponga de nombres, fechas, participación e imágenes verificadas.',
   },
+];
+export const focusCards = [
+  { kicker: 'Nombre', title: 'Semilla', copy: 'MUHU significa semilla en quechua: el comienzo de un espacio que puede crecer.', icon: 'seed', label: 'Abrir ficha Semilla' },
+  { kicker: 'Oficio', title: 'Espacios dignos', copy: 'Diseño de infraestructura social segura, higiénica y útil para quien más la necesita.', icon: 'leaf', label: 'Abrir ficha Espacios dignos' },
+  { kicker: 'Cuidado', title: 'Oficio', copy: 'Priorizamos niños y adultos mayores en situación de vulnerabilidad.', icon: 'shield', label: 'Abrir ficha Oficio' },
+  { kicker: 'Apoyo', title: 'Donación', copy: 'Los aportes se destinan a fines sociales según estatutos y normativa vigente.', icon: 'heart', label: 'Abrir ficha Donación' },
+  { kicker: 'Cuentas', title: 'Transparencia', copy: 'MUHU es entidad perceptora de donaciones con beneficio tributario ante la SUNAT.', icon: 'map', label: 'Abrir ficha Transparencia' },
 ];
 export const donationSteps = [
   { title: 'Dona a MUHU', icon: 'heart', copy: 'Contáctanos para conocer el procedimiento de donación y recibir los datos oficiales de pago.' },

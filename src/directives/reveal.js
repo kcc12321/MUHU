@@ -1,5 +1,7 @@
 import { prefersReducedMotion } from "@/composables/useReducedMotion";
 
+const nodes = new Set();
+
 const observe = (el) => {
   if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
     el.classList.add("is-in");
@@ -22,6 +24,14 @@ const observe = (el) => {
   el._revealIo = io;
 };
 
+export const replayReveals = () => {
+  nodes.forEach((el) => {
+    el.classList.remove("is-in");
+    el._revealIo?.disconnect();
+    observe(el);
+  });
+};
+
 const applyTokens = (el, value) => {
   if (typeof value !== "string" || !value) return;
   value.split(/\s+/).forEach((token) => {
@@ -35,9 +45,11 @@ export default {
   mounted(el, binding) {
     el.classList.add("reveal");
     applyTokens(el, binding.value);
+    nodes.add(el);
     observe(el);
   },
   unmounted(el) {
     el._revealIo?.disconnect();
+    nodes.delete(el);
   },
 };

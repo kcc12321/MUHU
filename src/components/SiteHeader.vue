@@ -13,8 +13,20 @@ const headerFocused = ref(false);
 const isBar = ref(false);
 const isHidden = ref(false);
 
+const cinemaOnScreen = () => {
+  const stage = document.querySelector(".stage");
+  if (!stage) return false;
+  const box = stage.getBoundingClientRect();
+  return box.bottom > 80 && box.top < window.innerHeight - 40;
+};
+
 const syncHeader = () => {
   const y = window.scrollY;
+  if (route.path === "/" && cinemaOnScreen() && !menuOpen.value) {
+    isBar.value = false;
+    isHidden.value = false;
+    return;
+  }
   if (prefersReducedMotion() || window.innerWidth <= 960) {
     isBar.value = y >= 40;
     isHidden.value = false;
@@ -39,7 +51,10 @@ const closeMenu = () => {
 const onKey = (event) => {
   if (event.key === "Escape" && menuOpen.value) { closeMenu(); toggle.value?.focus(); }
 };
-watch(() => route.fullPath, closeMenu);
+watch(() => route.fullPath, () => {
+  closeMenu();
+  syncHeader();
+});
 
 const onResize = () => {
   if (window.innerWidth > 960) closeMenu();

@@ -290,7 +290,7 @@ import ActionButton from '@/components/ActionButton.vue';
             <p class="lede">Colabora con MUHU como empresa donante, voluntario o aliado estratégico. Juntos construimos infraestructura digna y sostenible para quienes más lo necesitan.</p>
             <div class="cta-actions">
               <ActionButton tone="yellow" to="/#quiero-ayudar">Quiero ayudar <span aria-hidden="true">↗</span></ActionButton>
-              <ActionButton tone="white" to="/contacto">Contáctanos</ActionButton>
+              <ActionButton tone="white" to="/#contacto-vecinos">Quiero ayudar</ActionButton>
             </div>
           </div>
         </div>
