@@ -9,7 +9,20 @@ const router = createRouter({
   scrollBehavior(to, _from, savedPosition) {
     if (savedPosition) return savedPosition;
     if (to.hash) {
-      return { el: to.hash, top: 96, behavior: scrollMotion() };
+      // Wait for the preserved out-in page transition when coming from another route.
+      return new Promise((resolve) => {
+        const locate = (attempt = 0) => {
+          const element = document.getElementById(decodeURIComponent(to.hash.slice(1)));
+          if (element) {
+            const target = to.hash === '#contacto-vecinos' ? document.getElementById('contact-firstName') : element;
+            if (target && !target.hasAttribute('tabindex') && target.tagName !== 'INPUT') target.setAttribute('tabindex', '-1');
+            target?.focus({ preventScroll: true });
+            resolve({ el: element, top: 96, behavior: scrollMotion() });
+          } else if (attempt < 90) requestAnimationFrame(() => locate(attempt + 1));
+          else resolve({ top: 0 });
+        };
+        requestAnimationFrame(() => locate());
+      });
     }
     return { top: 0 };
   },
@@ -21,19 +34,6 @@ const router = createRouter({
     { path: "/nosotros", name: "about", component: () => import("@/views/AboutView.vue") },
     { path: "/contacto", name: "contact", component: () => import("@/views/ContactView.vue") },
   ],
-});
-
-router.afterEach((to) => {
-  if (to.hash !== "#contacto-vecinos") return;
-  const tryFocus = (attempt = 0) => {
-    const input = document.getElementById("neighbor-name");
-    if (input) {
-      input.focus({ preventScroll: true });
-      return;
-    }
-    if (attempt < 24) requestAnimationFrame(() => tryFocus(attempt + 1));
-  };
-  requestAnimationFrame(() => tryFocus());
 });
 
 export default router;

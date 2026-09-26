@@ -60,11 +60,64 @@ export const pillars = [
   { title: "Clima", copy: "Árboles nativos, suelo vivo y menos isla de calor.", icon: "leaf" },
 ];
 
+export const institutionalData = {
+  name: "Asociación MUHU",
+  subtitle: "Entidad sin fines de lucro · Comprometida con el bienestar social",
+  slogan: "Diseñamos espacios que transforman vidas",
+  legal: {
+    ruc: "20611534354",
+    partidaRegistral: "N° 15381975",
+    oficina: "Oficina Registral de Lima",
+    titulo: "N° 2023-02341562 (14/08/2023)",
+    sunatResolucion: "Nº 0490050045389",
+    calificacionSunat: "Entidad Perceptora de Donaciones con Beneficio Tributario",
+    direccion: "Calle La Rueda N° 209 Urb. La Planicie, La Molina, Lima",
+    email: "croma@quiz.com.pe",
+    samplePdf: "/assets/comprobante-recepcion-donaciones.pdf",
+  },
+  presentation: "La Asociación MUHU es una entidad sin fines de lucro creada por una familia de arquitectos con vocación de servicio, comprometida con el desarrollo humano y la mejora de las condiciones de vida de poblaciones vulnerables en el Perú. Su enfoque combina diseño arquitectónico funcional con impacto social sostenible.",
+  mission: "Mejorar la calidad de vida de niños y adultos mayores en situación de vulnerabilidad, mediante la construcción de espacios seguros, higiénicos y dignos que atiendan necesidades de sanidad, agua, higiene y nutrición.",
+  vision: "Ser una organización referente en infraestructura social inclusiva, con presencia en diversas regiones del país y reconocimiento por su gestión transparente y compromiso comunitario.",
+  objectives: [
+    { title: "Centros de acogida", desc: "Espacios seguros y adaptados a movilidad reducida para niños y adultos mayores.", icon: "shield" },
+    { title: "Comedores y nutrición", desc: "Infraestructura con enfoque en alimentación segura, agua y estándares sanitarios.", icon: "heart" },
+    { title: "Desarrollo sostenible", desc: "Diseño bioclimático, materiales duraderos y respeto al entorno urbano y social.", icon: "leaf" },
+    { title: "Alianzas e incentivos", desc: "Canalización de recursos empresariales con beneficio tributario formal ante la SUNAT.", icon: "sun" },
+    { title: "Transparencia activa", desc: "Trazabilidad documental, contabilidad digital respaldada por CPC y supervisión colegiada.", icon: "map" },
+  ],
+  transparencyPoints: [
+    { title: "Sistema Contable Digital", desc: "Registro integral respaldado por Contador Público Colegiado (CPC) y soporte documentario." },
+    { title: "Supervisión Técnica Colegiada", desc: "Todos los diseños y planificaciones son validados y supervisados por profesionales colegiados." },
+    { title: "Informes Periódicos de Ejecución", desc: "Rendición de cuentas sobre avance técnico y destino presupuestal de cada fondo recibido." },
+    { title: "Exclusividad Social", desc: "Cada donación recibida se destina 100% a fines sociales según estatutos y normativa vigente." }
+  ]
+};
+
 export const team = [
-  { name: "Lina Vargas", role: "Dirección", image: "/assets/gardener.png" },
-  { name: "Mateo Ríos", role: "Obra y diseño", image: "/assets/why.jpg" },
-  { name: "Sofía Alem", role: "Territorio", image: "/assets/about.jpg" },
-  { name: "Nicolás Pereyra", role: "Alianzas", image: "/assets/rating.png" },
+  {
+    name: "Gianfranco Cuneo",
+    role: "Fundador de MUHU",
+    bio: "Impulsor del propósito fundacional de MUHU, articulando visión social, compromiso con el desarrollo humano y canalización de iniciativas para comunidades vulnerables.",
+    image: "/assets/gardener.png",
+    linkedin: "https://www.linkedin.com/in/gianfranco-cuneo-5563581/?trk=public_post_feed-actor-name",
+    hasActiveLinkedin: true,
+  },
+  {
+    name: "Caio Alessandro Jaccazio Roma",
+    role: "Arquitecto & Director",
+    bio: "Lidera la dirección técnica y la visión arquitectónica de MUHU, integrando diseño funcional, habitabilidad digna e infraestructura con impacto social.",
+    image: "/assets/why.jpg",
+    linkedin: null,
+    hasActiveLinkedin: false,
+  },
+  {
+    name: "Rossina",
+    role: "Arquitecta & Directora",
+    bio: "Codirige el desarrollo espacial y la estrategia de proyectos, con especial foco en sostenibilidad comunitaria, accesibilidad e inclusión humana.",
+    image: "/assets/about.jpg",
+    linkedin: null,
+    hasActiveLinkedin: false,
+  },
 ];
 
 export const transparency = [

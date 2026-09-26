@@ -1,10 +1,15 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, watch } from "vue";
+import { useRoute } from 'vue-router';
 import { prefersReducedMotion } from "@/composables/useReducedMotion";
-import { brand, nav } from "@/data/content";
+import { brand } from "@/data/content";
+import { homeNav as nav } from '@/data/home';
 import RollText from "./RollText.vue";
 
 const menuOpen = ref(false);
+const route = useRoute();
+const toggle = ref(null);
+const headerFocused = ref(false);
 const isBar = ref(false);
 const isHidden = ref(false);
 
@@ -32,8 +37,9 @@ const closeMenu = () => {
 };
 
 const onKey = (event) => {
-  if (event.key === "Escape") closeMenu();
+  if (event.key === "Escape" && menuOpen.value) { closeMenu(); toggle.value?.focus(); }
 };
+watch(() => route.fullPath, closeMenu);
 
 const onResize = () => {
   if (window.innerWidth > 960) closeMenu();
@@ -57,7 +63,9 @@ onUnmounted(() => {
 <template>
   <header
     class="site-header is-ready"
-    :class="{ 'is-bar': isBar, 'is-hidden': isHidden, 'is-open': menuOpen }"
+    :class="{ 'is-bar': isBar || route.path !== '/' || headerFocused, 'is-hidden': isHidden && !headerFocused, 'is-open': menuOpen }"
+    @focusin="headerFocused = true"
+    @focusout="headerFocused = $event.currentTarget.contains($event.relatedTarget); !headerFocused && closeMenu()"
   >
     <div class="header-inner">
       <router-link class="brand-mark" to="/" :aria-label="`${brand.name} inicio`">
@@ -65,12 +73,12 @@ onUnmounted(() => {
         {{ brand.name }}
       </router-link>
       <nav class="nav" aria-label="Principal">
-        <router-link v-for="item in nav" :key="item.to" :to="item.to">
+        <router-link v-for="item in nav" :key="item.to" :to="item.to" :class="{ 'nav-donate': item.label === 'Quiero ayudar' }" :aria-current="route.fullPath === item.to ? 'location' : undefined">
           <RollText :text="item.label" />
         </router-link>
       </nav>
-      <router-link v-magnetic class="btn btn-white header-cta" to="/contacto">Contacto</router-link>
       <button
+        ref="toggle"
         class="menu-toggle"
         type="button"
         :aria-expanded="menuOpen"
@@ -81,11 +89,10 @@ onUnmounted(() => {
         <span></span><span></span>
       </button>
     </div>
-    <div id="mobile-nav" class="mobile-nav" :class="{ 'is-open': menuOpen }" :hidden="!menuOpen">
+    <nav id="mobile-nav" aria-label="Principal móvil" class="mobile-nav" :class="{ 'is-open': menuOpen }" :hidden="!menuOpen">
       <router-link v-for="item in nav" :key="item.to" :to="item.to" @click="closeMenu">
         {{ item.label }}
       </router-link>
-      <router-link class="btn btn-white" to="/contacto" @click="closeMenu">Contacto</router-link>
-    </div>
+    </nav>
   </header>
 </template>

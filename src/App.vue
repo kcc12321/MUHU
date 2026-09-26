@@ -1,17 +1,19 @@
 <script setup>
 import { useRoute } from "vue-router";
 import SiteHeader from "./components/SiteHeader.vue";
-import SiteFooter from "./components/SiteFooter.vue";
+import HomeFooter from "@/components/HomeFooter.vue";
+import SiteLoader from "@/components/SiteLoader.vue";
 
 const route = useRoute();
 
 const onPageEnter = () => {
-  if (route.hash === "#contacto-vecinos") return;
+  if (route.hash) return;
   document.getElementById("main")?.focus({ preventScroll: true });
 };
 </script>
 
 <template>
+  <SiteLoader />
   <a class="skip-link" href="#main">Saltar al contenido</a>
   <SiteHeader />
   <main id="main" tabindex="-1">
@@ -23,5 +25,5 @@ const onPageEnter = () => {
       </Transition>
     </RouterView>
   </main>
-  <SiteFooter />
+  <HomeFooter />
 </template>

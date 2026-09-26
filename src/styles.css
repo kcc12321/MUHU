@@ -303,31 +303,49 @@ h2 { font-size: clamp(36px, 5vw, 58px); }
   height: 64px;
   background: var(--sand);
   color: var(--ink);
+  display: flex;
+  align-items: center;
+  user-select: none;
 }
 .ticker-track {
   display: flex;
-  align-items: center;
-  gap: 28px;
   width: max-content;
-  height: 100%;
-  animation: ticker 22s linear infinite;
-  font-size: 16px;
-  font-weight: 500;
 }
-.ticker-track span {
+.ticker-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  animation: ticker-slide 40s linear infinite;
+  will-change: transform;
+}
+.ticker:hover .ticker-group {
+  animation-play-state: paused;
+}
+.ticker-item {
   display: inline-flex;
   align-items: center;
-  gap: 28px;
+  font-size: 16px;
+  font-weight: 500;
   white-space: nowrap;
+  gap: 28px;
+  margin-right: 28px;
 }
-.ticker-track span::after {
+.ticker-item::after {
   content: "";
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--stone);
+  flex-shrink: 0;
 }
-@keyframes ticker { to { transform: translateX(-50%); } }
+@keyframes ticker-slide {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
 
 .about, .stats, .process, .projects, .why, .insights, .quote { padding: 96px 0; }
 .about-grid, .quote-grid {
@@ -686,6 +704,7 @@ blockquote p {
   html { scroll-behavior: auto; }
   .site-header.is-hidden { transform: none; }
   .ticker-track,
+  .ticker-group,
   .site-header,
   .site-header.is-hidden,
   .hero-img,

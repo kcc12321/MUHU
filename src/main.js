@@ -4,6 +4,7 @@ import router from "./router";
 import reveal from "./directives/reveal";
 import magnetic from "./directives/magnetic";
 import "./styles.css";
+import './home.css';
 
 const app = createApp(App);
 app.use(router);
