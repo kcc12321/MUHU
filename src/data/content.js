@@ -33,12 +33,14 @@ export const founder = {
     "Un parque no es un lujo. Es la infraestructura más barata para que un barrio se vuelva habitable.",
 };
 
+export { projectsData, plannedProjects, completedProjects } from "./projects";
+
 export const currentProject = {
-  name: "Parque Los Álamos",
-  place: "Villa Sur",
-  status: "Diagnóstico cerrado · obra Q2–Q3 2026",
-  copy: "Recuperamos 1,8 ha de predio abandonado: senderos, drenaje, iluminación y 140 especies nativas.",
-  images: ["/assets/project-hawthorn.jpg", "/assets/project-ashridge.jpg", "/assets/project-birch.jpg"],
+  name: "CENTRO DE DESARROLLO SOCIAL - MUSA",
+  place: "Av. Musa, La Molina, Lima",
+  status: "Planificado · Avance 20% · Proyección Q4 2027",
+  copy: "Espacio comunitario multifuncional con cubierta tensada bioclimática concebido para la Municipalidad de La Molina.",
+  images: ["/assets/projects/cds-musa.jpg", "/assets/projects/casa-de-todos-acho.jpg", "/assets/projects/casa-de-todos-palomino.jpg"],
 };
 
 export const roadmap = [
