@@ -1,3 +1,5 @@
+import { asset } from "@/lib/assets";
+
 export const projectsData = [
   {
     id: "cds-musa",
@@ -15,11 +17,11 @@ export const projectsData = [
     projection: "Diciembre 2027",
     projectionQuarter: "Q4 2027",
     projectionDetail: "Culminación proyectada hacia el último trimestre de 2027. Actualmente en desarrollo de especialidades arquitectónicas y tramitación institucional.",
-    image: "/assets/projects/cds-musa.jpg",
+    image: asset("/assets/projects/cds-musa.jpg"),
     gallery: [
-      { src: "/assets/projects/cds-musa.jpg", caption: "Render arquitectónico: Fachada y cubierta tensada bioclimática" },
-      { src: "/assets/projects/cds-musa.jpg", caption: "Perspectiva de acceso e integración comunitaria con la Av. Musa" },
-      { src: "/assets/projects/cds-musa.jpg", caption: "Plazas exteriores y módulos de atención asistencial" }
+      { src: asset("/assets/projects/cds-musa.jpg"), caption: "Render arquitectónico: Fachada y cubierta tensada bioclimática" },
+      { src: asset("/assets/projects/cds-musa.jpg"), caption: "Perspectiva de acceso e integración comunitaria con la Av. Musa" },
+      { src: asset("/assets/projects/cds-musa.jpg"), caption: "Plazas exteriores y módulos de atención asistencial" }
     ],
     alt: "Fachada y cubierta tensada del Centro de Desarrollo Social - Musa en La Molina",
     description: "Espacio comunitario multifuncional concebido para la Municipalidad de La Molina. Integra una gran cubierta tensada bioclimática, plazas abiertas y módulos asistenciales diseñados para brindar atención médica preventiva, estimulación temprana, talleres productivos y recreación a familias y adultos mayores de la zona.",
@@ -55,11 +57,11 @@ export const projectsData = [
     projection: "Completado (2020)",
     projectionQuarter: "2020",
     projectionDetail: "Proyecto ejecutado e inaugurado con éxito durante la emergencia sanitaria para salvaguardar a personas en situación de calle.",
-    image: "/assets/projects/casa-de-todos-acho.jpg",
+    image: asset("/assets/projects/casa-de-todos-acho.jpg"),
     gallery: [
-      { src: "/assets/projects/casa-de-todos-acho.jpg", caption: "Vista general del albergue en el ruedo de la histórica Plaza de Acho" },
-      { src: "/assets/projects/casa-de-todos-acho.jpg", caption: "Pabellones climatizados y paneles solares fotovoltaicos" },
-      { src: "/assets/projects/casa-de-todos-acho.jpg", caption: "Dormitorios modulares individuales y servicios sanitarios" }
+      { src: asset("/assets/projects/casa-de-todos-acho.jpg"), caption: "Vista general del albergue en el ruedo de la histórica Plaza de Acho" },
+      { src: asset("/assets/projects/casa-de-todos-acho.jpg"), caption: "Pabellones climatizados y paneles solares fotovoltaicos" },
+      { src: asset("/assets/projects/casa-de-todos-acho.jpg"), caption: "Dormitorios modulares individuales y servicios sanitarios" }
     ],
     alt: "Estructura central de la Casa de Todos instalada en el ruedo de la Plaza de Acho",
     description: "Intervención humanitaria y arquitectónica de emergencia adaptada en el ruedo de la histórica Plaza de Toros de Acho. Se implementó una carpa estructural climatizada con paneles solares fotovoltaicos, dormitorios individuales modulares, comedores, tópico médico y servicios de higiene para acoger y proteger con dignidad a más de un centenar de personas sin hogar.",
@@ -89,11 +91,11 @@ export const projectsData = [
     projection: "Completado (Sede Permanente)",
     projectionQuarter: "Sede Definitiva",
     projectionDetail: "Conjunto residencial definitivo entregado para albergar de manera permanente a adultos mayores en condición de vulnerabilidad.",
-    image: "/assets/projects/casa-de-todos-palomino.jpg",
+    image: asset("/assets/projects/casa-de-todos-palomino.jpg"),
     gallery: [
-      { src: "/assets/projects/casa-de-todos-palomino.jpg", caption: "Pórtico de ingreso y fachada de Casa de Todos Palomino" },
-      { src: "/assets/projects/casa-de-todos-palomino.jpg", caption: "Pabellones habitacionales bioclimáticos y diseño accesible" },
-      { src: "/assets/projects/casa-de-todos-palomino.jpg", caption: "Ciudadela residencial integrada con amplias áreas verdes" }
+      { src: asset("/assets/projects/casa-de-todos-palomino.jpg"), caption: "Pórtico de ingreso y fachada de Casa de Todos Palomino" },
+      { src: asset("/assets/projects/casa-de-todos-palomino.jpg"), caption: "Pabellones habitacionales bioclimáticos y diseño accesible" },
+      { src: asset("/assets/projects/casa-de-todos-palomino.jpg"), caption: "Ciudadela residencial integrada con amplias áreas verdes" }
     ],
     alt: "Pabellón de acceso e instalaciones de Casa de Todos Palomino",
     description: "Complejo residencial permanente y modelo de hábitat digno desarrollado para la Beneficencia de Lima en Palomino. Concebido como una pequeña comunidad protegida con pabellones habitacionales bioclimáticos, amplias áreas verdes arboladas, talleres de laborterapia y consultorios médicos para asegurar un envejecimiento digno, seguro y rodeado de naturaleza.",

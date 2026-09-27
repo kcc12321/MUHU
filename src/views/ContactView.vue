@@ -1,12 +1,13 @@
 <script setup>
 import ContactForm from "@/components/ContactForm.vue";
 import { faqs } from "@/data/content";
+import { asset } from "@/lib/assets";
 </script>
 
 <template>
   <div class="contact-page">
     <section class="page-hero contact-hero" aria-labelledby="contact-hero-title">
-      <img src="/assets/hero.jpg" alt="Contacto institucional Asociación MUHU" width="1920" height="980" fetchpriority="high" decoding="async">
+      <img :src="asset('/assets/hero.jpg')" alt="Contacto institucional Asociación MUHU" width="1920" height="980" fetchpriority="high" decoding="async">
       <div class="wrap">
         <p class="pill pill-light">Contacto Institucional</p>
         <h1 id="contact-hero-title">Hablemos de nuevos <em>proyectos y colaboración</em></h1>

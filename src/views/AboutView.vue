@@ -2,13 +2,14 @@
 import { institutionalData, team } from '@/data/content';
 import Icon from '@/components/Icon.vue';
 import ActionButton from '@/components/ActionButton.vue';
+import { asset } from '@/lib/assets';
 </script>
 
 <template>
   <div class="about-page">
     <!-- Hero Section con animación y dinamismo -->
     <section class="page-hero about-hero" aria-labelledby="about-hero-title">
-      <img src="/assets/hero.jpg" alt="Arquitectura con vocación de servicio y espacios sostenibles" width="1920" height="980" fetchpriority="high" decoding="async">
+      <img :src="asset('/assets/hero.jpg')" alt="Arquitectura con vocación de servicio y espacios sostenibles" width="1920" height="980" fetchpriority="high" decoding="async">
       <div class="wrap hero-wrap">
         <div v-reveal>
           <p class="pill pill-light">Sobre la asociación</p>

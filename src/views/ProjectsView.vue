@@ -3,6 +3,7 @@ import { ref, computed } from "vue";
 import Icon from "@/components/Icon.vue";
 import ActionButton from "@/components/ActionButton.vue";
 import { projectsData, plannedProjects, completedProjects } from "@/data/projects";
+import { asset } from "@/lib/assets";
 
 const activeFilter = ref("all"); // 'all' | 'planned' | 'completed'
 
@@ -41,7 +42,7 @@ const setFilter = (filter) => {
     <!-- Hero Section -->
     <section class="page-hero projects-hero" aria-labelledby="projects-hero-title">
       <img
-        src="/assets/projects/cds-musa.jpg"
+        :src="asset('/assets/projects/cds-musa.jpg')"
         alt="Infraestructura social y proyectos arquitectónicos de MUHU"
         width="1920"
         height="980"

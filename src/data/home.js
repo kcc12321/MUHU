@@ -1,3 +1,5 @@
+import { asset } from '@/lib/assets';
+
 // Fotografías de referencia existentes, no documentación de obras de MUHU.
 // Sustituir aquí por material autorizado; toda la información de portada vive aquí.
 export const homeNav = [
@@ -8,12 +10,12 @@ export const homeNav = [
   { to: '/#quiero-ayudar', label: 'Quiero ayudar' },
 ];
 export const heroSlides = [
-  { src: '/assets/hero.jpg', alt: 'Espacio verde abierto junto a una edificación', caption: 'Espacios para encontrarnos' },
-  { src: '/assets/projects/cds-musa.jpg', alt: 'Centro de Desarrollo Social - Musa en La Molina', caption: 'Diseño arquitectónico con vocación social' },
-  { src: '/assets/projects/casa-de-todos-palomino.jpg', alt: 'Casa de Todos Palomino', caption: 'Hábitat digno y comunidades seguras' },
+  { src: asset('/assets/hero.jpg'), alt: 'Espacio verde abierto junto a una edificación', caption: 'Espacios para encontrarnos' },
+  { src: asset('/assets/projects/cds-musa.jpg'), alt: 'Centro de Desarrollo Social - Musa en La Molina', caption: 'Diseño arquitectónico con vocación social' },
+  { src: asset('/assets/projects/casa-de-todos-palomino.jpg'), alt: 'Casa de Todos Palomino', caption: 'Hábitat digno y comunidades seguras' },
 ];
 export const aboutImage = {
-  src: '/assets/about.jpg',
+  src: asset('/assets/about.jpg'),
   alt: 'Espacio arquitectónico y de encuentro comunitario',
   caption: 'Espacios para encontrarnos y crecer. Fotografía referencial.',
 };
@@ -25,7 +27,7 @@ export const projects = [
     status: 'Planificado · Avance 20% · Proyección Q4 2027',
     date: 'Q4 2027',
     category: 'Proyecto Planificado',
-    image: '/assets/projects/cds-musa.jpg',
+    image: asset('/assets/projects/cds-musa.jpg'),
     alt: 'Render del Centro de Desarrollo Social - Musa',
     note: 'Cliente: Municipalidad de La Molina · Lima, Perú',
     detail: 'En fase de planificación y diseño técnico con 20% de avance. Diseñado para brindar atención comunitaria integral y espacios de recreación.',
@@ -37,7 +39,7 @@ export const projects = [
     status: 'Completado · 100% Ejecutado',
     date: '2020',
     category: 'Proyecto Completado',
-    image: '/assets/projects/casa-de-todos-acho.jpg',
+    image: asset('/assets/projects/casa-de-todos-acho.jpg'),
     alt: 'Casa de Todos en la Plaza de Acho',
     note: 'Cliente: Beneficencia de Lima · Lima, Perú',
     detail: 'Respuesta humanitaria inmediata con energía solar fotovoltaica, dormitorios modulares, comedor y asistencia médica durante la emergencia sanitaria.',
@@ -49,7 +51,7 @@ export const projects = [
     status: 'Completado · Sede Definitiva',
     date: 'Operativo',
     category: 'Proyecto Completado',
-    image: '/assets/projects/casa-de-todos-palomino.jpg',
+    image: asset('/assets/projects/casa-de-todos-palomino.jpg'),
     alt: 'Instalaciones de Casa de Todos Palomino',
     note: 'Cliente: Beneficencia de Lima · Lima, Perú',
     detail: 'Sede definitiva entregada para garantizar un envejecimiento digno, seguro y en comunidad para personas en desamparo social.',

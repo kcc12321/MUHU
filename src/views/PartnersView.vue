@@ -2,6 +2,7 @@
 import { nextTick, reactive, ref } from "vue";
 import Icon from "@/components/Icon.vue";
 import { partnerBenefits } from "@/data/content";
+import { asset } from "@/lib/assets";
 
 const form = reactive({
   company: "",
@@ -31,7 +32,7 @@ const onSubmit = async () => {
 
 <template>
   <section class="page-hero">
-    <img src="/assets/hero.jpg" alt="Equipo corporativo en un parque" width="1920" height="980">
+    <img :src="asset('/assets/hero.jpg')" alt="Equipo corporativo en un parque" width="1920" height="980">
     <div class="wrap">
       <p class="pill pill-light">Empresas</p>
       <h1>Transformá la ciudad con nosotros</h1>

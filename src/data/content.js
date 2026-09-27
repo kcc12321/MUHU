@@ -1,3 +1,5 @@
+import { asset } from "@/lib/assets";
+
 export const brand = {
   name: "MUHU",
   slogan: "Construyendo un futuro para todos",
@@ -40,7 +42,7 @@ export const currentProject = {
   place: "Av. Musa, La Molina, Lima",
   status: "Planificado · Avance 20% · Proyección Q4 2027",
   copy: "Espacio comunitario multifuncional con cubierta tensada bioclimática concebido para la Municipalidad de La Molina.",
-  images: ["/assets/projects/cds-musa.jpg", "/assets/projects/casa-de-todos-acho.jpg", "/assets/projects/casa-de-todos-palomino.jpg"],
+  images: [asset("/assets/projects/cds-musa.jpg"), asset("/assets/projects/casa-de-todos-acho.jpg"), asset("/assets/projects/casa-de-todos-palomino.jpg")],
 };
 
 export const roadmap = [
@@ -75,7 +77,7 @@ export const institutionalData = {
     calificacionSunat: "Entidad Perceptora de Donaciones con Beneficio Tributario",
     direccion: "Calle La Rueda N° 209 Urb. La Planicie, La Molina, Lima",
     email: "contacto@muhu.org.pe",
-    samplePdf: "/assets/comprobante-recepcion-donaciones.pdf",
+    samplePdf: asset("/assets/comprobante-recepcion-donaciones.pdf"),
   },
   presentation: "La Asociación MUHU es una entidad sin fines de lucro creada por una familia de arquitectos con vocación de servicio, comprometida con el desarrollo humano y la mejora de las condiciones de vida de poblaciones vulnerables en el Perú. Su enfoque combina diseño arquitectónico funcional con impacto social sostenible.",
   mission: "Mejorar la calidad de vida de niños y adultos mayores en situación de vulnerabilidad, mediante la construcción de espacios seguros, higiénicos y dignos que atiendan necesidades de sanidad, agua, higiene y nutrición.",
@@ -100,7 +102,7 @@ export const team = [
     name: "Gianfranco Cuneo",
     role: "Fundador de MUHU",
     bio: "Impulsor del propósito fundacional de MUHU, articulando visión social, compromiso con el desarrollo humano y canalización de iniciativas para comunidades vulnerables.",
-    image: "/assets/gianfranco-cuneo.png",
+    image: asset("/assets/gianfranco-cuneo.png"),
     linkedin: "https://www.linkedin.com/in/gianfranco-cuneo-5563581/?trk=public_post_feed-actor-name",
     hasActiveLinkedin: true,
   },
@@ -108,7 +110,7 @@ export const team = [
     name: "Caio Alessandro Jaccazio Roma",
     role: "Arquitecto & Director",
     bio: "Lidera la dirección técnica y la visión arquitectónica de MUHU, integrando diseño funcional, habitabilidad digna e infraestructura con impacto social.",
-    image: "/assets/why.jpg",
+    image: asset("/assets/why.jpg"),
     linkedin: null,
     hasActiveLinkedin: false,
   },
@@ -116,7 +118,7 @@ export const team = [
     name: "Rossina",
     role: "Arquitecta & Directora",
     bio: "Codirige el desarrollo espacial y la estrategia de proyectos, con especial foco en sostenibilidad comunitaria, accesibilidad e inclusión humana.",
-    image: "/assets/about.jpg",
+    image: asset("/assets/about.jpg"),
     linkedin: null,
     hasActiveLinkedin: false,
   },

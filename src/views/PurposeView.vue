@@ -2,11 +2,12 @@
 import CountUp from "@/components/CountUp.vue";
 import Icon from "@/components/Icon.vue";
 import { brand, mission, pillars, problemStats, vision } from "@/data/content";
+import { asset } from "@/lib/assets";
 </script>
 
 <template>
   <section class="page-hero">
-    <img src="/assets/cta.jpg" alt="Comunidad en un espacio recuperado" width="1421" height="690">
+    <img :src="asset('/assets/cta.jpg')" alt="Comunidad en un espacio recuperado" width="1421" height="690">
     <div class="wrap">
       <p class="pill pill-light">Nuestro propósito</p>
       <h1>Por qué recuperamos espacios públicos</h1>
