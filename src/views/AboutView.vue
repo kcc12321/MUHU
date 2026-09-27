@@ -1,8 +1,36 @@
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue';
 import { institutionalData, team } from '@/data/content';
 import Icon from '@/components/Icon.vue';
 import ActionButton from '@/components/ActionButton.vue';
 import { asset } from '@/lib/assets';
+
+const isVideoModalOpen = ref(false);
+
+const openVideoModal = () => {
+  isVideoModalOpen.value = true;
+  document.body.style.overflow = 'hidden';
+};
+
+const closeVideoModal = () => {
+  isVideoModalOpen.value = false;
+  document.body.style.overflow = '';
+};
+
+const onKeydown = (e) => {
+  if (e.key === 'Escape' && isVideoModalOpen.value) {
+    closeVideoModal();
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('keydown', onKeydown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', onKeydown);
+  document.body.style.overflow = '';
+});
 </script>
 
 <template>
@@ -19,7 +47,7 @@ import { asset } from '@/lib/assets';
       </div>
     </section>
 
-    <!-- 01. Quiénes somos / Manifiesto Editorial & Monografía Tipográfica (CERO TARJETAS) -->
+    <!-- 01. Quiénes somos / Manifiesto Editorial, Misión & Visión Breve, Imagen Referencial y Video Simulado -->
     <section class="about-intro-section" aria-labelledby="intro-title">
       <div class="wrap">
         <!-- Encabezado Editorial del Manifiesto -->
@@ -47,45 +75,98 @@ import { asset } from '@/lib/assets';
           </div>
         </div>
 
-        <!-- Ejes de Misión y Visión: Monografía Tipográfica Abierta (CERO TARJETAS) -->
-        <div class="monograph-pillars" v-reveal="'reveal-delay-1'">
-          <div class="monograph-pillar pillar-mission">
-            <div class="pillar-meta">
-              <span class="pillar-idx">01 // MISIÓN</span>
-              <span class="pillar-sub">Acción Presente</span>
+        <!-- Vitrina Multimedia: Video Simulado + Imagen Referencial y Misión/Visión Breve -->
+        <div class="about-multimedia-grid" v-reveal="'reveal-delay-1'">
+          
+          <!-- Columna 1: Video Institucional Simulado -->
+          <div class="video-preview-card">
+            <div class="video-preview-media">
+              <img
+                :src="asset('/assets/about-video-poster.jpg')"
+                alt="Grabación del video documental sobre el trabajo en territorio de Asociación MUHU"
+                class="video-poster-img"
+                width="720"
+                height="450"
+                loading="lazy"
+              />
+              <div class="video-overlay-gradient"></div>
+              
+              <!-- Badges de estado superior -->
+              <div class="video-top-bar">
+                <span class="video-badge-live">
+                  <span class="pulse-dot"></span>
+                  Documental MUHU
+                </span>
+                <span class="video-duration">2:30 min · 4K</span>
+              </div>
+
+              <!-- Botón Play Central con efecto Glow -->
+              <button
+                type="button"
+                class="video-play-btn"
+                @click="openVideoModal"
+                aria-label="Reproducir video documental institucional de MUHU"
+              >
+                <span class="play-pulse-ring"></span>
+                <span class="play-icon-box">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                  </svg>
+                </span>
+              </button>
+
+              <!-- Footer del reproductor simulado -->
+              <div class="video-bottom-info">
+                <span class="video-tagline">Conoce el impacto en territorio</span>
+                <span class="video-cta-text">Haz clic para ver la vista previa documental <span aria-hidden="true">▶</span></span>
+              </div>
             </div>
-            <h3 class="pillar-statement">
-              “Transformar la vulnerabilidad en dignidad mediante espacios seguros, higiénicos y perdurables.”
-            </h3>
-            <p class="pillar-desc">
-              {{ institutionalData.mission }}
-            </p>
-            <ul class="pillar-specs" role="list">
-              <li><span class="spec-bullet" aria-hidden="true">✦</span> Sanidad y agua potable segura</li>
-              <li><span class="spec-bullet" aria-hidden="true">✦</span> Comedores e inocuidad nutricional</li>
-              <li><span class="spec-bullet" aria-hidden="true">✦</span> Centros de acogida y habitabilidad digna</li>
-            </ul>
+            <div class="video-caption-bar">
+              <p>
+                <strong>Video Institucional:</strong> Documentando procesos de diseño participativo y obras en territorio.
+              </p>
+            </div>
           </div>
 
-          <div class="pillar-divider" aria-hidden="true"></div>
+          <!-- Columna 2: Misión y Visión Breves y Editoriales -->
+          <div class="mission-vision-showcase">
+            <div class="compact-mv-container">
+              <article class="compact-mv-item mv-mision">
+                <div class="mv-meta">
+                  <span class="mv-kicker">01 // MISIÓN</span>
+                  <span class="mv-tag">Acción Presente</span>
+                </div>
+                <h3 class="mv-title">Dignidad a través del espacio</h3>
+                <p class="mv-desc">
+                  {{ institutionalData.mission }}
+                </p>
+                <ul class="mv-bullet-list" role="list">
+                  <li><span class="bullet-star" aria-hidden="true">✦</span> Sanidad y agua potable segura</li>
+                  <li><span class="bullet-star" aria-hidden="true">✦</span> Comedores e inocuidad nutricional</li>
+                  <li><span class="bullet-star" aria-hidden="true">✦</span> Centros de acogida y habitabilidad digna</li>
+                </ul>
+              </article>
 
-          <div class="monograph-pillar pillar-vision">
-            <div class="pillar-meta">
-              <span class="pillar-idx">02 // VISIÓN</span>
-              <span class="pillar-sub">Horizonte Social</span>
+              <div class="mv-sep" aria-hidden="true"></div>
+
+              <article class="compact-mv-item mv-vision">
+                <div class="mv-meta">
+                  <span class="mv-kicker">02 // VISIÓN</span>
+                  <span class="mv-tag">Horizonte Social</span>
+                </div>
+                <h3 class="mv-title">Referente nacional de hábitat</h3>
+                <p class="mv-desc">
+                  {{ institutionalData.vision }}
+                </p>
+                <ul class="mv-bullet-list" role="list">
+                  <li><span class="bullet-star" aria-hidden="true">✦</span> Cobertura regional descentralizada</li>
+                  <li><span class="bullet-star" aria-hidden="true">✦</span> Diseño bioclimático perdurable</li>
+                  <li><span class="bullet-star" aria-hidden="true">✦</span> Autonomía y gobernanza comunitaria</li>
+                </ul>
+              </article>
             </div>
-            <h3 class="pillar-statement">
-              “Consolidar un referente nacional de infraestructura social que impulse comunidades prósperas y autónomas.”
-            </h3>
-            <p class="pillar-desc">
-              {{ institutionalData.vision }}
-            </p>
-            <ul class="pillar-specs" role="list">
-              <li><span class="spec-bullet" aria-hidden="true">✦</span> Cobertura regional descentralizada</li>
-              <li><span class="spec-bullet" aria-hidden="true">✦</span> Diseño bioclimático perdurable</li>
-              <li><span class="spec-bullet" aria-hidden="true">✦</span> Autonomía y gobernanza comunitaria</li>
-            </ul>
           </div>
+
         </div>
 
         <!-- Friso Arquitectónico / Datum institucional (Línea pura sin tarjeta) -->
@@ -115,7 +196,7 @@ import { asset } from '@/lib/assets';
 
     <hr class="about-chapter-divider" aria-hidden="true">
 
-    <!-- 02. Objetivos y líneas de acción (Bento Grid 2 + 3 armónico) -->
+    <!-- 02. Objetivos y líneas de acción (Bento Grid con Imágenes y Badges - Optimizado) -->
     <section class="about-objectives-section" aria-labelledby="objectives-title">
       <div class="wrap">
         <div class="section-header" v-reveal>
@@ -127,29 +208,61 @@ import { asset } from '@/lib/assets';
           <p class="section-subtitle">Nuestros esfuerzos se concentran en atender necesidades esenciales de sanidad, agua, higiene, nutrición y habitabilidad digna.</p>
         </div>
         
-        <!-- Cuadrícula Bento 2 + 3: 2 tarjetas destacadas arriba y 3 tarjetas complementarias abajo -->
+        <!-- Cuadrícula Bento 2 + 3 (render estático ultra fluido sin jank) -->
         <div class="objectives-bento">
-          <!-- Fila Superior: 2 ejes asistenciales directos (50% / 50%) -->
+          <!-- Fila Superior: 2 ejes asistenciales prioritarios (50% / 50%) -->
           <div class="bento-row bento-row-top">
-            <article v-for="(obj, index) in institutionalData.objectives.slice(0, 2)" :key="obj.title" v-reveal="`scale reveal-delay-${index + 1}`" class="objective-card objective-card-featured">
-              <div class="card-top-meta">
-                <span class="objective-icon"><Icon :name="obj.icon" /></span>
-                <span class="bento-badge">Eje Asistencial Prioritario</span>
+            <article
+              v-for="obj in institutionalData.objectives.slice(0, 2)"
+              :key="obj.title"
+              class="objective-card objective-card-featured"
+            >
+              <div class="objective-img-wrap">
+                <img
+                  :src="obj.image"
+                  :alt="obj.alt"
+                  loading="lazy"
+                  decoding="async"
+                  width="600"
+                  height="340"
+                  class="objective-cover-img"
+                />
+                <span class="objective-img-overlay" aria-hidden="true"></span>
+                <span class="objective-icon-floating"><Icon :name="obj.icon" /></span>
+                <span class="objective-img-badge">{{ obj.badge }}</span>
               </div>
-              <h3>{{ obj.title }}</h3>
-              <p>{{ obj.desc }}</p>
+              <div class="objective-card-body">
+                <h3>{{ obj.title }}</h3>
+                <p>{{ obj.desc }}</p>
+              </div>
             </article>
           </div>
 
           <!-- Fila Inferior: 3 ejes metodológicos y de soporte (33.3% cada uno) -->
           <div class="bento-row bento-row-bottom">
-            <article v-for="(obj, index) in institutionalData.objectives.slice(2, 5)" :key="obj.title" v-reveal="`scale reveal-delay-${index + 1}`" class="objective-card objective-card-support">
-              <div class="card-top-meta">
-                <span class="objective-icon"><Icon :name="obj.icon" /></span>
-                <span class="bento-badge-sub">Eje Metodológico</span>
+            <article
+              v-for="obj in institutionalData.objectives.slice(2, 5)"
+              :key="obj.title"
+              class="objective-card objective-card-support"
+            >
+              <div class="objective-img-wrap">
+                <img
+                  :src="obj.image"
+                  :alt="obj.alt"
+                  loading="lazy"
+                  decoding="async"
+                  width="480"
+                  height="260"
+                  class="objective-cover-img"
+                />
+                <span class="objective-img-overlay" aria-hidden="true"></span>
+                <span class="objective-icon-floating"><Icon :name="obj.icon" /></span>
+                <span class="objective-img-badge is-sub">{{ obj.badge }}</span>
               </div>
-              <h3>{{ obj.title }}</h3>
-              <p>{{ obj.desc }}</p>
+              <div class="objective-card-body">
+                <h3>{{ obj.title }}</h3>
+                <p>{{ obj.desc }}</p>
+              </div>
             </article>
           </div>
         </div>
@@ -158,9 +271,10 @@ import { asset } from '@/lib/assets';
 
     <hr class="about-chapter-divider" aria-hidden="true">
 
-    <!-- 03. Gobernanza y Control // PROTOCOLO DE RIGOR Y AUDITORÍA (SIN TARJETAS) -->
+    <!-- 03. Gobernanza y Control // EDITORIAL SPREAD ARQUITECTÓNICO: TABLITA PROTAGONISTA + DOSSIER COLEGIADO -->
     <section class="about-gallery-section" aria-labelledby="gallery-title">
       <div class="wrap">
+        <!-- Encabezado Limpio y Editorial (Sin viñetas flotantes huérfanas) -->
         <div class="gallery-header" v-reveal>
           <div class="gallery-kicker-row">
             <span class="gallery-kicker">03 / Manifiesto de Gobernanza</span>
@@ -172,97 +286,174 @@ import { asset } from '@/lib/assets';
           </p>
         </div>
 
-        <!-- Registro Notarial / Protocolo de Transparencia (CERO TARJETAS) -->
-        <div class="governance-ledger" v-reveal>
-          <div class="ledger-header-row" aria-hidden="true">
-            <span class="col-head col-pliego">Pliego</span>
-            <span class="col-head col-compromiso">Compromiso Institucional &amp; Alcance Técnico (Memoria Oficial)</span>
-            <span class="col-head col-aval">Garantía / Aval</span>
+        <!-- Master Spread Editorial: La Tabla Protagonista (68%) flanqueada por el Expediente Técnico (32%) -->
+        <div class="governance-spread-layout" v-reveal>
+          <!-- Columna Principal: La Tabla Protagonista de Pliegos -->
+          <div class="governance-ledger-col">
+            <div class="governance-ledger">
+              <div class="ledger-header-row" aria-hidden="true">
+                <span class="col-head col-pliego">Pliego</span>
+                <span class="col-head col-compromiso">Compromiso Institucional &amp; Alcance Técnico (Memoria Oficial)</span>
+                <span class="col-head col-aval">Garantía / Aval</span>
+              </div>
+
+              <!-- Pliego 01 -->
+              <article class="ledger-row">
+                <div class="ledger-col-idx">
+                  <span class="ledger-roman">I</span>
+                  <span class="ledger-ref">PLIEGO · 01</span>
+                </div>
+                <div class="ledger-col-main">
+                  <h3 class="ledger-title">Sistema Contable Digital Respaldado por CPC</h3>
+                  <p class="ledger-desc">Registro con sistema contable digital respaldado por un Contador Público Colegiado (CPC) y con respaldo documentario riguroso por cada aporte recibido.</p>
+                </div>
+                <div class="ledger-col-seal">
+                  <div class="ledger-seal">
+                    <svg class="seal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                      <path d="m9 12 2 2 4-4"/>
+                    </svg>
+                    <span>Respaldo CPC Colegiado</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Pliego 02 -->
+              <article class="ledger-row">
+                <div class="ledger-col-idx">
+                  <span class="ledger-roman">II</span>
+                  <span class="ledger-ref">PLIEGO · 02</span>
+                </div>
+                <div class="ledger-col-main">
+                  <h3 class="ledger-title">Supervisión Técnica por Profesionales Colegiados</h3>
+                  <p class="ledger-desc">Supervisión técnica de proyectos formulados y dirigidos en campo directamente por profesionales colegiados (arquitectos e ingenieros CIP / CAP).</p>
+                </div>
+                <div class="ledger-col-seal">
+                  <div class="ledger-seal">
+                    <svg class="seal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                      <path d="m9 12 2 2 4-4"/>
+                    </svg>
+                    <span>Validación CIP / CAP</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Pliego 03 -->
+              <article class="ledger-row">
+                <div class="ledger-col-idx">
+                  <span class="ledger-roman">III</span>
+                  <span class="ledger-ref">PLIEGO · 03</span>
+                </div>
+                <div class="ledger-col-main">
+                  <h3 class="ledger-title">Informes Periódicos de Obra y Presupuesto</h3>
+                  <p class="ledger-desc">Emisión periódica de informes transparentes sobre avance físico de obra y ejecución presupuestal detallada para conocimiento de aliados y donantes.</p>
+                </div>
+                <div class="ledger-col-seal">
+                  <div class="ledger-seal">
+                    <svg class="seal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                      <path d="m9 12 2 2 4-4"/>
+                    </svg>
+                    <span>Rendición Documentada</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Pliego 04 -->
+              <article class="ledger-row">
+                <div class="ledger-col-idx">
+                  <span class="ledger-roman">IV</span>
+                  <span class="ledger-ref">PLIEGO · 04</span>
+                </div>
+                <div class="ledger-col-main">
+                  <h3 class="ledger-title">Destino Exclusivo Social &amp; Difusión Institucional</h3>
+                  <p class="ledger-desc">Cada donación recibida se destina exclusivamente a fines sociales conforme a los estatutos y normativas de la SUNAT, con publicación de resultados y testimonios en medios institucionales.</p>
+                </div>
+                <div class="ledger-col-seal">
+                  <div class="ledger-seal">
+                    <svg class="seal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                      <path d="m9 12 2 2 4-4"/>
+                    </svg>
+                    <span>100% Destino Social</span>
+                  </div>
+                </div>
+              </article>
+            </div>
           </div>
 
-          <!-- Artículo 01 -->
-          <article class="ledger-row" v-reveal="'reveal-delay-1'">
-            <div class="ledger-col-idx">
-              <span class="ledger-roman">I</span>
-              <span class="ledger-ref">PLIEGO · 01</span>
-            </div>
-            <div class="ledger-col-main">
-              <h3 class="ledger-title">Sistema Contable Digital Respaldado por CPC</h3>
-              <p class="ledger-desc">Registro con sistema contable digital respaldado por un Contador Público Colegiado (CPC) y con respaldo documentario riguroso por cada aporte recibido.</p>
-            </div>
-            <div class="ledger-col-seal">
-              <div class="ledger-seal">
-                <svg class="seal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  <path d="m9 12 2 2 4-4"/>
-                </svg>
-                <span>Respaldo CPC Colegiado</span>
+          <!-- Columna Lateral: Dossier de Obra y Auditoría Colegiada con Imagen Integrada -->
+          <aside class="governance-dossier-col" aria-label="Expediente técnico institucional">
+            <div class="governance-dossier-card">
+              <div class="dossier-media-box">
+                <img
+                  :src="asset('/assets/about-mission.jpg')"
+                  alt="Planos arquitectónicos, maquetación bioclimática y rigor técnico en campo"
+                  width="440"
+                  height="250"
+                  loading="lazy"
+                  decoding="async"
+                  class="dossier-cover-img"
+                />
+                <div class="dossier-img-shade" aria-hidden="true"></div>
+                <span class="dossier-stamp-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  Expediente de Obra
+                </span>
+                <span class="dossier-code-pill">REF: MUHU-EXP-2026</span>
               </div>
-            </div>
-          </article>
 
-          <!-- Artículo 02 -->
-          <article class="ledger-row" v-reveal="'reveal-delay-2'">
-            <div class="ledger-col-idx">
-              <span class="ledger-roman">II</span>
-              <span class="ledger-ref">PLIEGO · 02</span>
-            </div>
-            <div class="ledger-col-main">
-              <h3 class="ledger-title">Supervisión Técnica por Profesionales Colegiados</h3>
-              <p class="ledger-desc">Supervisión técnica de proyectos formulados y dirigidos en campo directamente por profesionales colegiados (arquitectos e ingenieros CIP / CAP).</p>
-            </div>
-            <div class="ledger-col-seal">
-              <div class="ledger-seal">
-                <svg class="seal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  <path d="m9 12 2 2 4-4"/>
-                </svg>
-                <span>Validación CIP / CAP</span>
-              </div>
-            </div>
-          </article>
+              <div class="dossier-content">
+                <div class="dossier-heading">
+                  <span class="dossier-pretitle">Supervisión Colegiada</span>
+                  <h3 class="dossier-headline">Garantía y Acreditación Institucional</h3>
+                  <p class="dossier-caption">
+                    Cada intervención social cuenta con partida técnica individualizada, firma de colegiatura y fiscalización contable continua.
+                  </p>
+                </div>
 
-          <!-- Artículo 03 -->
-          <article class="ledger-row" v-reveal="'reveal-delay-3'">
-            <div class="ledger-col-idx">
-              <span class="ledger-roman">III</span>
-              <span class="ledger-ref">PLIEGO · 03</span>
-            </div>
-            <div class="ledger-col-main">
-              <h3 class="ledger-title">Informes Periódicos de Obra y Presupuesto</h3>
-              <p class="ledger-desc">Emisión periódica de informes transparentes sobre avance físico de obra y ejecución presupuestal detallada para conocimiento de aliados y donantes.</p>
-            </div>
-            <div class="ledger-col-seal">
-              <div class="ledger-seal">
-                <svg class="seal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  <path d="m9 12 2 2 4-4"/>
-                </svg>
-                <span>Rendición Documentada</span>
-              </div>
-            </div>
-          </article>
+                <div class="dossier-verifications">
+                  <div class="verification-item">
+                    <span class="verif-check" aria-hidden="true">✓</span>
+                    <div class="verif-text">
+                      <strong class="verif-name">Personería Jurídica</strong>
+                      <span class="verif-detail">RUC: 20611534354 (Activa y Habida)</span>
+                    </div>
+                  </div>
 
-          <!-- Artículo 04 -->
-          <article class="ledger-row" v-reveal="'reveal-delay-4'">
-            <div class="ledger-col-idx">
-              <span class="ledger-roman">IV</span>
-              <span class="ledger-ref">PLIEGO · 04</span>
-            </div>
-            <div class="ledger-col-main">
-              <h3 class="ledger-title">Destino Exclusivo Social &amp; Difusión Institucional</h3>
-              <p class="ledger-desc">Cada donación recibida se destina exclusivamente a fines sociales conforme a los estatutos y normativas de la SUNAT, con publicación de resultados y testimonios en medios institucionales.</p>
-            </div>
-            <div class="ledger-col-seal">
-              <div class="ledger-seal">
-                <svg class="seal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  <path d="m9 12 2 2 4-4"/>
-                </svg>
-                <span>100% Destino Social</span>
+                  <div class="verification-item">
+                    <span class="verif-check" aria-hidden="true">✓</span>
+                    <div class="verif-text">
+                      <strong class="verif-name">Dirección en Campo</strong>
+                      <span class="verif-detail">Arquitectos e Ingenieros CIP / CAP</span>
+                    </div>
+                  </div>
+
+                  <div class="verification-item">
+                    <span class="verif-check" aria-hidden="true">✓</span>
+                    <div class="verif-text">
+                      <strong class="verif-name">Rendición Contable</strong>
+                      <span class="verif-detail">Contador Público Colegiado (CPC)</span>
+                    </div>
+                  </div>
+
+                  <div class="verification-item">
+                    <span class="verif-check" aria-hidden="true">✓</span>
+                    <div class="verif-text">
+                      <strong class="verif-name">Calificación Fiscal</strong>
+                      <span class="verif-detail">Entidad Perceptora de Donaciones SUNAT</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="dossier-meta-footer">
+                  <span class="dossier-footer-seal">Trazabilidad 1:1</span>
+                  <span class="dossier-footer-sub">Inspección física en sitio</span>
+                </div>
               </div>
             </div>
-          </article>
+          </aside>
         </div>
       </div>
     </section>
@@ -387,5 +578,95 @@ import { asset } from '@/lib/assets';
         </div>
       </div>
     </section>
+
+    <!-- Modal Simulado de Video Institucional -->
+    <Teleport to="body">
+      <Transition name="fade-modal">
+        <div
+          v-if="isVideoModalOpen"
+          class="video-modal-backdrop"
+          @click.self="closeVideoModal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="video-modal-title"
+        >
+          <div class="video-modal-container">
+            <div class="video-modal-header">
+              <div class="modal-title-wrap">
+                <span class="modal-live-pill"><span class="pulse-dot"></span> MUHU Films</span>
+                <h3 id="video-modal-title">Documental Institucional: La Fuerza del Hábitat</h3>
+              </div>
+              <button
+                type="button"
+                class="btn-close-modal"
+                @click="closeVideoModal"
+                aria-label="Cerrar reproductor"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div class="video-modal-player-mockup">
+              <img
+                :src="asset('/assets/about-video-poster.jpg')"
+                alt="Escena del documental institucional"
+                class="modal-player-bg"
+              />
+              <div class="modal-player-overlay"></div>
+              
+              <!-- Cartel informativo estilizado de simulación -->
+              <div class="modal-player-center">
+                <div class="modal-reel-icon">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                    <line x1="7" y1="2" x2="7" y2="22"></line>
+                    <line x1="17" y1="2" x2="17" y2="22"></line>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <line x1="2" y1="7" x2="7" y2="7"></line>
+                    <line x1="2" y1="17" x2="7" y2="17"></line>
+                    <line x1="17" y1="17" x2="22" y2="17"></line>
+                    <line x1="17" y1="7" x2="22" y2="7"></line>
+                  </svg>
+                </div>
+                <h4>Video en etapa final de producción</h4>
+                <p>
+                  Estamos terminando el montaje del material audiovisual grabado en nuestras intervenciones y talleres comunitarios. Estará disponible públicamente muy pronto en alta definición.
+                </p>
+                <div class="modal-player-tags">
+                  <span>Resolución 4K Ultra HD</span>
+                  <span>Audio Inmersivo</span>
+                  <span>Subtítulos ES / EN</span>
+                </div>
+              </div>
+
+              <!-- Barra de control simulada de video -->
+              <div class="modal-player-controls" aria-hidden="true">
+                <div class="player-scrub-bar">
+                  <div class="player-scrub-progress"></div>
+                </div>
+                <div class="player-controls-row">
+                  <div class="controls-left">
+                    <span class="player-ctrl-icon">▶</span>
+                    <span class="player-ctrl-time">0:00 / 2:30</span>
+                    <span class="player-ctrl-vol">🔊</span>
+                  </div>
+                  <div class="controls-right">
+                    <span class="player-ctrl-hd">HD</span>
+                    <span class="player-ctrl-fs">⛶</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="video-modal-footer">
+              <p>Asociación MUHU · Construyendo un futuro digno para todos</p>
+              <button type="button" class="btn btn-close-action" @click="closeVideoModal">
+                Cerrar vista previa
+              </button>
+            </div>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
   </div>
 </template>
