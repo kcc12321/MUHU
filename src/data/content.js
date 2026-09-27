@@ -74,7 +74,7 @@ export const institutionalData = {
     sunatResolucion: "Nº 0490050045389",
     calificacionSunat: "Entidad Perceptora de Donaciones con Beneficio Tributario",
     direccion: "Calle La Rueda N° 209 Urb. La Planicie, La Molina, Lima",
-    email: "croma@quiz.com.pe",
+    email: "contacto@muhu.org.pe",
     samplePdf: "/assets/comprobante-recepcion-donaciones.pdf",
   },
   presentation: "La Asociación MUHU es una entidad sin fines de lucro creada por una familia de arquitectos con vocación de servicio, comprometida con el desarrollo humano y la mejora de las condiciones de vida de poblaciones vulnerables en el Perú. Su enfoque combina diseño arquitectónico funcional con impacto social sostenible.",
@@ -100,7 +100,7 @@ export const team = [
     name: "Gianfranco Cuneo",
     role: "Fundador de MUHU",
     bio: "Impulsor del propósito fundacional de MUHU, articulando visión social, compromiso con el desarrollo humano y canalización de iniciativas para comunidades vulnerables.",
-    image: "/assets/gardener.png",
+    image: "/assets/gianfranco-cuneo.png",
     linkedin: "https://www.linkedin.com/in/gianfranco-cuneo-5563581/?trk=public_post_feed-actor-name",
     hasActiveLinkedin: true,
   },
@@ -135,10 +135,10 @@ export const documents = [
 ];
 
 export const faqs = [
-  { q: "¿MUHU construye en cualquier barrio?", a: "Priorizamos zonas con poco acceso a verde seguro. El form de vecinos es el primer filtro." },
-  { q: "¿Cuánto tarda un parque?", a: "Entre diagnóstico e inauguración apuntamos a 8–12 meses, según permisos y clima." },
-  { q: "¿Cómo aporta una empresa?", a: "Fondeo de un tramo de obra, materiales o voluntariado. Escribínos en Empresas." },
-  { q: "¿Dónde veo los fondos?", a: "En Nosotros publicamos la distribución y los documentos de template." },
+  { q: "¿Cómo canalizar donaciones con beneficio tributario?", a: "La Asociación MUHU está calificada como Entidad Perceptora de Donaciones por la SUNAT (R.I. Nº 0490050045389). Emitimos Comprobantes de Recepción de Donaciones oficiales válidos para deducir del Impuesto a la Renta tanto para empresas como personas naturales." },
+  { q: "¿Cómo se articulan proyectos con municipios y entidades públicas?", a: "Desarrollamos expedientes técnicos, diseño bioclimático y coordinación interinstitucional para crear infraestructura pública y asistencial adaptada a las necesidades reales de cada comunidad." },
+  { q: "¿Qué tipo de obras e infraestructura desarrolla MUHU?", a: "Centros de desarrollo social, complejos de acogida humanitaria y residencial permanente, comedores y espacios de encuentro comunitario con accesibilidad universal." },
+  { q: "¿Cómo se asegura la transparencia y trazabilidad de los fondos?", a: "Mediante un sistema contable digital respaldado por Contador Público Colegiado (CPC), supervisión técnica por arquitectos e ingenieros colegiados (CAP/CIP) y destino 100% irrestricto a los fines sociales." },
 ];
 
 export const nav = [

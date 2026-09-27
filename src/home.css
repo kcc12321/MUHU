@@ -5,11 +5,7 @@
 .btn:disabled::before { display: none; }
 .btn-yellow { background: #a94825; color: white; }
 .btn-yellow:hover:not(:disabled), .btn-yellow:focus-visible { color: var(--ink); }
-.site-header .nav { gap: 32px; }
-.site-header .nav > a { display: inline-flex; min-height: 44px; align-items: center; }
-.site-header .nav-donate { padding: 0 24px; background: var(--paper); color: var(--leaf); border-radius: 99px; }
-.site-header::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(#15251dc9, transparent); pointer-events: none; }
-.site-header.is-bar::before, .site-header.is-open::before { display: none; }
+/* Header styles are now encapsulated in SiteHeader.vue */
 .menu-toggle { cursor: pointer; }
 .mobile-nav[hidden] { display: none; }
 .home-hero { min-height: max(760px, 100svh); overflow: hidden; padding-top: 144px; }
@@ -41,13 +37,101 @@
 .home-about .about-grid { gap: 40px; }
 .home-about figure img { height: 360px; border-radius: 24px 24px 96px 24px; }
 .home-about figcaption { font-size: 12px; color: var(--stone); margin-top: 12px; }
-.team-note { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--rule); display: grid; gap: 8px; }
+.team-note {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  gap: 16px;
+}
+.team-note-lead {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.founder-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 8px 18px 8px 8px;
+  border-radius: 999px;
+  width: fit-content;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+.founder-thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+}
+.founder-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.founder-info strong {
+  font-size: 14.5px;
+  color: var(--ink);
+}
+.founder-info span {
+  font-size: 12px;
+  color: var(--clay);
+  font-weight: 600;
+}
 .team-note p:last-child { max-width: 70ch; color: var(--stone); }
-.home-projects { background: var(--sand); }
+.home-projects {
+  padding: 48px 0 64px !important;
+  background: rgba(238, 232, 220, 0.45) !important;
+  border-top: 1px solid rgba(28, 26, 22, 0.08) !important;
+  border-bottom: 1px solid rgba(28, 26, 22, 0.08) !important;
+}
 .home-projects h2 { max-width: 22ch; }
-.project-instructions { color: var(--stone); font-size: 14px; margin-bottom: 24px; max-width: 68ch; }
-.project-track { position: relative; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: var(--moss) transparent; border-radius: 24px; }
-.project-panel { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; background: var(--paper); }
+.project-track {
+  position: relative;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  border-radius: 28px;
+}
+.project-track::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.project-panel {
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  background: #ffffff !important;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  box-shadow: 0 16px 40px -8px rgba(28, 26, 22, 0.08);
+  transition: background 0.4s ease;
+}
+
+/* En 02 De la idea al espacio: Etiqueta de Proyecto Planificado en color naranja */
+.project-panel.is-planned .project-category,
+.project-slide.is-planned-slide .project-category {
+  color: #c46a3a !important;
+  background: #fdf2eb !important;
+  border: 1px solid #f6cca7 !important;
+  font-weight: 700;
+}
+.project-panel.is-planned .status-dot,
+.project-slide.is-planned-slide .status-dot {
+  background: #c46a3a;
+}
+
 .project-slide { display: grid; height: 100%; }
 .project-photo { display: flex; flex-direction: column; min-width: 0; }
 .project-photo img { width: 100%; height: 280px; object-fit: cover; }
@@ -128,11 +212,30 @@
 }
 /* overflow: clip preserves the existing clipping without breaking sticky. */
 #main { overflow: clip; }
-@media (min-width: 961px) and (min-height: 760px) and (prefers-reduced-motion: no-preference) {
-  .project-runway { min-height: 170vh; }
-  .project-stage { position: sticky; top: 112px; }
-  .project-slide { height: 480px; }
-  .project-photo img { min-height: 0; height: 400px; }
+@media (min-width: 961px) and (prefers-reduced-motion: no-preference) {
+  .project-runway {
+    height: 220vh;
+    position: relative;
+    padding-bottom: 24px;
+  }
+  .project-stage {
+    position: sticky;
+    top: 86px;
+    height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .project-slide {
+    grid-template-columns: 1.35fr 1fr;
+    min-height: 520px;
+    height: min(580px, 64vh);
+  }
+  .project-photo img {
+    height: 100%;
+    min-height: 500px;
+    object-fit: cover;
+  }
 }
 
 /* ==========================================================================
@@ -145,7 +248,7 @@
   color: #fff;
 }
 .about-hero .wrap {
-  width: min(1200px, calc(100% - 48px));
+  width: min(1420px, calc(100% - 56px));
   margin: 0 auto;
 }
 .about-hero h1 {
@@ -160,90 +263,191 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
+/* ==========================================================================
+   SUBSECCIÓN 01: MANIFIESTO EDITORIAL & MONOGRAFÍA (CERO TARJETAS)
+   ========================================================================== */
 .about-intro-section {
-  padding: 104px 0 80px;
+  background: transparent !important;
+  padding: 88px 0 72px !important;
 }
-.intro-grid {
+
+.manifesto-header {
+  margin-bottom: 48px;
+}
+
+.manifesto-lead-grid {
   display: grid;
+  grid-template-columns: 1.15fr 1fr;
   gap: 56px;
   align-items: start;
 }
-.intro-copy h2 {
-  font-size: clamp(32px, 3.8vw, 48px);
-  margin-bottom: 24px;
-  line-height: 1.2;
+
+.manifesto-title {
+  font-size: clamp(32px, 3.6vw, 48px);
+  line-height: 1.18;
+  color: var(--bark);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
-.intro-copy em {
+
+.manifesto-title em {
   font-family: 'Playfair Display', serif;
   color: var(--clay);
   font-weight: 500;
+  font-style: italic;
 }
-.intro-lead {
-  font-size: 19px;
-  line-height: 1.65;
+
+.manifesto-lead-text {
+  font-size: 18px;
+  line-height: 1.68;
   color: var(--stone);
-  max-width: 58ch;
+  margin-bottom: 20px;
 }
-.intro-accent-box {
-  display: flex;
-  gap: 16px;
-  margin-top: 28px;
-  padding: 18px 24px;
-  background: var(--sand);
-  border-radius: 16px;
-  align-items: center;
+
+.manifesto-credo-inline {
+  padding-left: 20px;
+  border-left: 3px solid var(--clay);
 }
-.accent-bar {
-  width: 4px;
-  min-height: 48px;
-  background: var(--clay);
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-.intro-accent-box p {
+
+.manifesto-credo-inline p {
   font-size: 14.5px;
   color: var(--stone);
   line-height: 1.6;
+  font-style: italic;
   margin: 0;
 }
 
-.intro-cards {
+/* Monografía de Principios: Abierta, sin tarjetas */
+.monograph-pillars {
   display: grid;
-  gap: 24px;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 48px;
+  align-items: stretch;
+  padding: 44px 0 40px;
+  border-top: 1px solid rgba(28, 26, 22, 0.12);
+  border-bottom: 1px solid rgba(28, 26, 22, 0.12);
+  margin-bottom: 32px;
 }
-.mv-card {
-  background: var(--sand);
-  border-radius: 24px;
-  padding: 32px;
-  border-left: 4px solid var(--clay);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+.monograph-pillar {
+  display: flex;
+  flex-direction: column;
 }
-.mv-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+
+.pillar-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
 }
-.mv-card.vision-card {
-  border-left-color: var(--leaf);
+
+.pillar-idx {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
-.mv-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: var(--paper);
+
+.pillar-mission .pillar-idx {
+  color: var(--clay);
+}
+
+.pillar-vision .pillar-idx {
   color: var(--leaf);
-  display: grid;
-  place-items: center;
-  margin-bottom: 16px;
 }
-.mv-card h3 {
-  font-size: 20px;
-  margin-bottom: 12px;
+
+.pillar-sub {
+  font-size: 11px;
   font-weight: 600;
+  text-transform: uppercase;
+  color: #7f786d;
+  letter-spacing: 0.06em;
 }
-.mv-card p {
+
+.pillar-statement {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 21px;
+  line-height: 1.42;
+  margin: 0 0 16px;
+  color: var(--bark);
+}
+
+.pillar-desc {
+  font-size: 15.5px;
+  line-height: 1.7;
   color: var(--stone);
-  line-height: 1.6;
-  font-size: 15px;
+  margin: 0 0 24px;
+  flex-grow: 1;
+}
+
+.pillar-specs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pillar-specs li {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--bark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pillar-mission .spec-bullet {
+  color: var(--clay);
+  font-size: 12px;
+}
+
+.pillar-vision .spec-bullet {
+  color: var(--leaf);
+  font-size: 12px;
+}
+
+.pillar-divider {
+  width: 1px;
+  background: rgba(28, 26, 22, 0.14);
+}
+
+/* Barra de Datum Arquitectónico (Cero Tarjeta) */
+.monograph-datum-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 8px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.datum-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metric-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: #7f786d;
+}
+
+.metric-val {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--bark);
+}
+
+.datum-sep {
+  width: 1px;
+  height: 24px;
+  background: rgba(28, 26, 22, 0.12);
 }
 
 /* ==========================================================================
@@ -355,25 +559,16 @@
 }
 
 /* ==========================================================================
-   03. LÁMINAS DE GALERÍA: EL MANIFIESTO DE RIGOR (DISEÑO EDITORIAL & ARTÍSTICO)
+   03. PROTOCOLO DE GOBERNANZA & AUDITORÍA: REGISTRO NOTARIAL (CERO TARJETAS)
    ========================================================================== */
 .about-gallery-section {
-  padding: 104px 0 112px;
-  background: var(--paper);
+  padding: 88px 0 96px;
+  background: transparent !important;
   position: relative;
-}
-.about-gallery-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 5%;
-  right: 5%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(169, 72, 37, 0.2), transparent);
 }
 .gallery-header {
   max-width: 820px;
-  margin-bottom: 56px;
+  margin-bottom: 48px;
 }
 .gallery-kicker-row {
   display: flex;
@@ -401,7 +596,7 @@
 }
 .gallery-header h2 {
   font-size: clamp(32px, 4vw, 50px);
-  color: var(--ink);
+  color: var(--bark);
   line-height: 1.15;
   margin-bottom: 20px;
 }
@@ -418,99 +613,108 @@
   margin: 0;
 }
 
-.gallery-plates-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 28px;
-}
-@media (min-width: 640px) {
-  .gallery-plates-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media (min-width: 1024px) {
-  .gallery-plates-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+/* Registro Continuo Notarial de Gobernanza (Cero Tarjetas) */
+.governance-ledger {
+  margin-top: 40px;
+  border-top: 2px solid rgba(28, 26, 22, 0.16);
+  border-bottom: 2px solid rgba(28, 26, 22, 0.16);
 }
 
-.gallery-plate {
-  background: #fdfbf7;
-  border: 1px solid rgba(0, 0, 0, 0.07);
-  border-radius: 24px;
-  padding: 36px 30px;
+.ledger-header-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 220px;
+  gap: 32px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(28, 26, 22, 0.12);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #7f786d;
+}
+
+.ledger-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 220px;
+  gap: 32px;
+  align-items: center;
+  padding: 28px 16px;
+  border-bottom: 1px solid rgba(28, 26, 22, 0.09);
+  transition: background-color 0.25s ease, padding-left 0.25s ease;
+}
+
+.ledger-row:last-child {
+  border-bottom: none;
+}
+
+.ledger-row:hover {
+  background: rgba(255, 255, 255, 0.55);
+  padding-left: 24px;
+}
+
+.ledger-col-idx {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
-  position: relative;
+  gap: 4px;
 }
-.gallery-plate:hover {
-  transform: translateY(-8px);
-  border-color: rgba(169, 72, 37, 0.35);
-  box-shadow: 0 24px 48px -12px rgba(27, 56, 36, 0.1);
-}
-.plate-top-bar {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
-  padding-bottom: 16px;
-  margin-bottom: 24px;
-}
-.plate-number {
+
+.ledger-roman {
   font-family: 'Playfair Display', serif;
-  font-size: 32px;
+  font-size: 38px;
+  font-weight: 700;
   color: var(--clay);
-  font-weight: 500;
   line-height: 1;
 }
-.plate-archive-ref {
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
-  color: var(--stone);
-  font-weight: 600;
+
+.ledger-ref {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #8c857b;
   text-transform: uppercase;
-  opacity: 0.8;
 }
-.plate-body {
-  flex: 1;
+
+.ledger-col-main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
-.plate-title {
-  font-size: 19.5px;
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--ink);
-  margin-bottom: 14px;
+
+.ledger-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--bark);
+  margin: 0;
+  letter-spacing: -0.01em;
 }
-.plate-copy {
-  font-size: 14.5px;
+
+.ledger-desc {
+  font-size: 15px;
   line-height: 1.65;
   color: var(--stone);
   margin: 0;
 }
-.plate-seal-box {
-  margin-top: 32px;
-  padding-top: 18px;
-  border-top: 1px dashed rgba(0, 0, 0, 0.09);
+
+.ledger-col-seal {
   display: flex;
-  align-items: center;
+  justify-content: flex-end;
 }
-.artisan-seal {
+
+.ledger-seal {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--leaf);
-  background: #eef3e8;
-  border: 1px solid rgba(27, 56, 36, 0.18);
-  padding: 6px 14px;
+  padding: 8px 16px;
+  background: rgba(27, 56, 36, 0.06);
+  border: 1px solid rgba(27, 56, 36, 0.2);
   border-radius: 99px;
-  letter-spacing: 0.02em;
+  color: var(--leaf);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
 }
-.seal-icon {
+
+.ledger-seal .seal-icon {
   color: var(--leaf);
   flex-shrink: 0;
 }
@@ -706,17 +910,19 @@
    EQUIPO Y LIDERAZGO
    ========================================================================== */
 .about-team-section {
-  padding: 96px 0;
+  padding: 80px 0;
 }
 .leadership-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  max-width: 1040px;
+  margin-inline: auto;
+  gap: 24px;
 }
 .leadership-card {
   background: var(--paper);
   border: 1px solid var(--rule);
-  border-radius: 24px;
+  border-radius: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -724,12 +930,12 @@
 }
 .leadership-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.06);
 }
 .leadership-photo-wrap {
   position: relative;
   width: 100%;
-  height: 320px;
+  height: 240px;
   overflow: hidden;
   background: var(--sand);
 }
@@ -737,26 +943,27 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 15%;
   transition: transform 0.5s ease;
 }
 .leadership-card:hover .leadership-photo-wrap img {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 .role-pill {
   position: absolute;
-  bottom: 16px;
-  left: 16px;
+  bottom: 12px;
+  left: 12px;
   background: rgba(21, 37, 29, 0.88);
   backdrop-filter: blur(8px);
   color: #fff;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 600;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 99px;
   letter-spacing: 0.02em;
 }
 .leadership-body {
-  padding: 24px 28px 32px;
+  padding: 20px 22px 24px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -765,11 +972,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 14px;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 .leadership-header-row h3 {
-  font-size: 21px;
+  font-size: 19px;
   font-family: Figtree, sans-serif;
   font-weight: 600;
   line-height: 1.2;
@@ -800,9 +1007,9 @@
   cursor: default;
 }
 .leadership-bio {
-  font-size: 14.5px;
+  font-size: 13.5px;
   color: var(--stone);
-  line-height: 1.6;
+  line-height: 1.55;
   margin: 0;
 }
 
@@ -811,12 +1018,16 @@
    ========================================================================== */
 .about-cta-section {
   padding: 0 0 96px;
+  background: transparent;
+  border: none;
 }
 .about-cta-card {
-  background: var(--sand);
+  background: #ffffff !important;
   border-radius: 28px;
   padding: 64px 40px;
   text-align: center;
+  border: 1px solid var(--rule);
+  box-shadow: 0 16px 40px -8px rgba(28, 26, 22, 0.06);
 }
 .about-cta-card .cta-content {
   max-width: 680px;
@@ -836,14 +1047,251 @@
 }
 
 @media (min-width: 800px) {
-  .intro-grid {
-    grid-template-columns: 1.2fr 1fr;
-    gap: 64px;
-  }
   .receipt-box {
     grid-template-columns: 1.4fr 1fr;
     padding: 56px 64px;
     align-items: center;
   }
 }
+
+@media (max-width: 960px) {
+  .manifesto-lead-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .monograph-pillars {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .pillar-divider {
+    width: 100%;
+    height: 1px;
+  }
+  .monograph-datum-bar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .datum-sep {
+    display: none;
+  }
+  .ledger-header-row {
+    display: none;
+  }
+  .ledger-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 24px 12px;
+  }
+  .ledger-row:hover {
+    padding-left: 12px;
+  }
+  .ledger-col-idx {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .ledger-col-seal {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .receipt-box {
+    padding: 32px 20px !important;
+    border-radius: 22px !important;
+    gap: 28px;
+  }
+  .btn-receipt {
+    width: 100%;
+    justify-content: center;
+    font-size: 13.5px;
+    padding: 12px 18px;
+    text-align: center;
+  }
+  .about-intro-section {
+    padding: 56px 0 44px !important;
+  }
+  .manifesto-title {
+    font-size: 28px !important;
+  }
+  .manifesto-lead-text {
+    font-size: 16px !important;
+  }
+  .pillar-statement {
+    font-size: 19px !important;
+  }
+  .monograph-datum-bar {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+  .datum-metric {
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    border-bottom: 1px dashed rgba(28, 26, 22, 0.08);
+  }
+  .datum-metric:last-child {
+    border-bottom: none;
+  }
+  .objective-card {
+    padding: 24px 20px !important;
+    border-radius: 20px !important;
+  }
+  .leadership-photo-wrap {
+    height: 220px;
+  }
+  .about-cta-card {
+    padding: 40px 20px !important;
+  }
+}
+
+/* ==========================================================================
+   SISTEMA DE CAPAS Y DIFERENCIACIÓN DE SUBSECCIONES (NOSOTROS Y HOME)
+   ========================================================================== */
+.about-page,
+.projects-page,
+.home-about,
+.home-contact,
+.quote,
+.section-planned,
+.section-completed,
+.projects-cta-section,
+.contact-faqs {
+  background: transparent !important;
+}
+
+/* ==========================================================================
+   VISTA NOSOTROS: RITMO Y DIFERENCIACIÓN ESTRUCTURAL DE SUBSECCIONES (ARMONIOSO)
+   ========================================================================== */
+
+/* Separador arquitectónico sutil entre capítulos (no invasivo) */
+.about-chapter-divider {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(28, 26, 22, 0.12) 20%, rgba(28, 26, 22, 0.12) 80%, transparent 100%);
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.section-kicker-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.section-kicker-row .section-kicker {
+  margin-bottom: 0;
+}
+
+.chapter-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 12px;
+  border-radius: 99px;
+  line-height: 1.4;
+}
+
+.chapter-tag.tag-clay {
+  background: #f8ece6;
+  color: var(--clay);
+  border: 1px solid rgba(169, 72, 37, 0.2);
+}
+
+.chapter-tag.tag-leaf {
+  background: #eef3e8;
+  color: var(--leaf);
+  border: 1px solid rgba(27, 56, 36, 0.2);
+}
+
+/* Subsección 01: Quiénes somos - Canvas botánico continuo */
+.about-intro-section {
+  background: transparent !important;
+  padding: 88px 0 80px !important;
+}
+
+/* Subsección 02: Objetivos y líneas de acción - Flotante sobre el lienzo botánico */
+.about-objectives-section {
+  background: transparent !important;
+  padding: 80px 0 !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+.objective-card {
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(8px);
+  border-radius: 22px !important;
+  border: 1px solid rgba(28, 26, 22, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(28, 26, 22, 0.03) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.objective-card-featured {
+  background: #ffffff !important;
+  border-top: 3px solid var(--clay) !important;
+}
+.objective-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(28, 26, 22, 0.07) !important;
+  border-color: rgba(27, 56, 36, 0.2) !important;
+}
+
+/* Subsección 03: Manifiesto de Gobernanza - Canvas continuo sin tarjetas */
+.about-gallery-section {
+  background: transparent !important;
+  padding: 80px 0 !important;
+}
+
+/* Subsección SUNAT: Tarjeta Insignia Verde Esmeralda Institucional */
+.receipt-section {
+  background: transparent !important;
+  padding: 24px 0 80px !important;
+}
+.receipt-box {
+  background: var(--leaf) !important;
+  color: #ffffff !important;
+  border-radius: 32px !important;
+  box-shadow: 0 20px 48px rgba(21, 37, 29, 0.22) !important;
+}
+
+/* Subsección 04: Equipo y Liderazgo - Flotante y limpio sobre el lienzo botánico */
+.about-team-section {
+  background: transparent !important;
+  padding: 80px 0 !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+.leadership-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(28, 26, 22, 0.08) !important;
+  border-radius: 22px !important;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(28, 26, 22, 0.04) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.leadership-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(28, 26, 22, 0.08) !important;
+}
+
+/* Subsección CTA: Canvas Botánico con Recuadro Flotante Nítido */
+.about-cta-section {
+  background: transparent !important;
+  padding: 80px 0 !important;
+}
+.about-cta-card,
+.projects-cta-card {
+  background: #ffffff !important;
+  background-image: none !important;
+  border: 1px solid var(--rule) !important;
+  border-radius: 28px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05) !important;
+}
+
 

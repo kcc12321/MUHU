@@ -4,6 +4,7 @@ export const homeNav = [
   { to: '/#top', label: 'Inicio' },
   { to: '/nosotros', label: 'Nosotros' },
   { to: '/proyectos', label: 'Proyectos' },
+  { to: '/contacto', label: 'Contacto' },
   { to: '/#quiero-ayudar', label: 'Quiero ayudar' },
 ];
 export const heroSlides = [
@@ -11,7 +12,11 @@ export const heroSlides = [
   { src: '/assets/projects/cds-musa.jpg', alt: 'Centro de Desarrollo Social - Musa en La Molina', caption: 'Diseño arquitectónico con vocación social' },
   { src: '/assets/projects/casa-de-todos-palomino.jpg', alt: 'Casa de Todos Palomino', caption: 'Hábitat digno y comunidades seguras' },
 ];
-export const aboutImage = heroSlides[1];
+export const aboutImage = {
+  src: '/assets/about.jpg',
+  alt: 'Espacio arquitectónico y de encuentro comunitario',
+  caption: 'Espacios para encontrarnos y crecer. Fotografía referencial.',
+};
 export const projects = [
   {
     id: 'cds-musa',

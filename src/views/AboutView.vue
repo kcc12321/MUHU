@@ -18,40 +18,110 @@ import ActionButton from '@/components/ActionButton.vue';
       </div>
     </section>
 
-    <!-- 01. Quiénes somos / Misión y Visión (Sin badges que se movieron al footer) -->
+    <!-- 01. Quiénes somos / Manifiesto Editorial & Monografía Tipográfica (CERO TARJETAS) -->
     <section class="about-intro-section" aria-labelledby="intro-title">
       <div class="wrap">
-        <div class="intro-grid">
-          <div v-reveal class="intro-copy">
+        <!-- Encabezado Editorial del Manifiesto -->
+        <div class="manifesto-header" v-reveal>
+          <div class="section-kicker-row">
             <p class="section-kicker">01 / Quiénes somos</p>
-            <h2 id="intro-title">Una familia de arquitectos con <em>vocación de servicio</em></h2>
-            <p class="intro-lead">{{ institutionalData.presentation }}</p>
-            <div class="intro-accent-box">
-              <span class="accent-bar" aria-hidden="true"></span>
-              <p>Unimos el rigor del diseño espacial y bioclimático con el compromiso humano de brindar infraestructura segura, higiénica y digna a las comunidades más vulnerables del país.</p>
+            <span class="chapter-tag tag-clay">Manifiesto Fundacional</span>
+          </div>
+          <div class="manifesto-lead-grid">
+            <div class="manifesto-title-col">
+              <h2 id="intro-title" class="manifesto-title">
+                Una familia de arquitectos con <em>vocación de servicio</em>
+              </h2>
+            </div>
+            <div class="manifesto-text-col">
+              <p class="manifesto-lead-text">
+                {{ institutionalData.presentation }}
+              </p>
+              <div class="manifesto-credo-inline">
+                <p>
+                  Unimos el rigor del diseño espacial y bioclimático con el compromiso humano de brindar infraestructura segura, higiénica y digna a las comunidades más vulnerables del país.
+                </p>
+              </div>
             </div>
           </div>
-          <div v-reveal="'clip reveal-delay-2'" class="intro-cards">
-            <div class="mv-card mission-card">
-              <div class="mv-icon"><Icon name="heart" /></div>
-              <h3>Nuestra Misión</h3>
-              <p>{{ institutionalData.mission }}</p>
+        </div>
+
+        <!-- Ejes de Misión y Visión: Monografía Tipográfica Abierta (CERO TARJETAS) -->
+        <div class="monograph-pillars" v-reveal="'reveal-delay-1'">
+          <div class="monograph-pillar pillar-mission">
+            <div class="pillar-meta">
+              <span class="pillar-idx">01 // MISIÓN</span>
+              <span class="pillar-sub">Acción Presente</span>
             </div>
-            <div class="mv-card vision-card">
-              <div class="mv-icon"><Icon name="eye" /></div>
-              <h3>Nuestra Visión</h3>
-              <p>{{ institutionalData.vision }}</p>
+            <h3 class="pillar-statement">
+              “Transformar la vulnerabilidad en dignidad mediante espacios seguros, higiénicos y perdurables.”
+            </h3>
+            <p class="pillar-desc">
+              {{ institutionalData.mission }}
+            </p>
+            <ul class="pillar-specs" role="list">
+              <li><span class="spec-bullet" aria-hidden="true">✦</span> Sanidad y agua potable segura</li>
+              <li><span class="spec-bullet" aria-hidden="true">✦</span> Comedores e inocuidad nutricional</li>
+              <li><span class="spec-bullet" aria-hidden="true">✦</span> Centros de acogida y habitabilidad digna</li>
+            </ul>
+          </div>
+
+          <div class="pillar-divider" aria-hidden="true"></div>
+
+          <div class="monograph-pillar pillar-vision">
+            <div class="pillar-meta">
+              <span class="pillar-idx">02 // VISIÓN</span>
+              <span class="pillar-sub">Horizonte Social</span>
             </div>
+            <h3 class="pillar-statement">
+              “Consolidar un referente nacional de infraestructura social que impulse comunidades prósperas y autónomas.”
+            </h3>
+            <p class="pillar-desc">
+              {{ institutionalData.vision }}
+            </p>
+            <ul class="pillar-specs" role="list">
+              <li><span class="spec-bullet" aria-hidden="true">✦</span> Cobertura regional descentralizada</li>
+              <li><span class="spec-bullet" aria-hidden="true">✦</span> Diseño bioclimático perdurable</li>
+              <li><span class="spec-bullet" aria-hidden="true">✦</span> Autonomía y gobernanza comunitaria</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Friso Arquitectónico / Datum institucional (Línea pura sin tarjeta) -->
+        <div class="monograph-datum-bar" v-reveal="'reveal-delay-2'">
+          <div class="datum-metric">
+            <span class="metric-tag">Vocación</span>
+            <span class="metric-val">Arquitectura Social</span>
+          </div>
+          <div class="datum-sep" aria-hidden="true"></div>
+          <div class="datum-metric">
+            <span class="metric-tag">Enfoque</span>
+            <span class="metric-val">Poblaciones Vulnerables</span>
+          </div>
+          <div class="datum-sep" aria-hidden="true"></div>
+          <div class="datum-metric">
+            <span class="metric-tag">Marco Legal</span>
+            <span class="metric-val">Entidad Perceptora SUNAT</span>
+          </div>
+          <div class="datum-sep" aria-hidden="true"></div>
+          <div class="datum-metric">
+            <span class="metric-tag">Gobernanza</span>
+            <span class="metric-val">Supervisión CIP / CAP</span>
           </div>
         </div>
       </div>
     </section>
 
+    <hr class="about-chapter-divider" aria-hidden="true">
+
     <!-- 02. Objetivos y líneas de acción (Bento Grid 2 + 3 armónico) -->
     <section class="about-objectives-section" aria-labelledby="objectives-title">
       <div class="wrap">
         <div class="section-header" v-reveal>
-          <p class="section-kicker">02 / Objetivos y líneas de acción</p>
+          <div class="section-kicker-row">
+            <p class="section-kicker">02 / Objetivos y líneas de acción</p>
+            <span class="chapter-tag tag-leaf">Ejes de Acción</span>
+          </div>
           <h2 id="objectives-title">Cómo generamos un impacto real y perdurable</h2>
           <p class="section-subtitle">Nuestros esfuerzos se concentran en atender necesidades esenciales de sanidad, agua, higiene, nutrición y habitabilidad digna.</p>
         </div>
@@ -60,7 +130,7 @@ import ActionButton from '@/components/ActionButton.vue';
         <div class="objectives-bento">
           <!-- Fila Superior: 2 ejes asistenciales directos (50% / 50%) -->
           <div class="bento-row bento-row-top">
-            <article v-for="(obj, index) in institutionalData.objectives.slice(0, 2)" :key="obj.title" v-reveal="`reveal-delay-${index + 1}`" class="objective-card objective-card-featured">
+            <article v-for="(obj, index) in institutionalData.objectives.slice(0, 2)" :key="obj.title" v-reveal="`scale reveal-delay-${index + 1}`" class="objective-card objective-card-featured">
               <div class="card-top-meta">
                 <span class="objective-icon"><Icon :name="obj.icon" /></span>
                 <span class="bento-badge">Eje Asistencial Prioritario</span>
@@ -72,7 +142,7 @@ import ActionButton from '@/components/ActionButton.vue';
 
           <!-- Fila Inferior: 3 ejes metodológicos y de soporte (33.3% cada uno) -->
           <div class="bento-row bento-row-bottom">
-            <article v-for="(obj, index) in institutionalData.objectives.slice(2, 5)" :key="obj.title" v-reveal="`reveal-delay-${index + 1}`" class="objective-card objective-card-support">
+            <article v-for="(obj, index) in institutionalData.objectives.slice(2, 5)" :key="obj.title" v-reveal="`scale reveal-delay-${index + 1}`" class="objective-card objective-card-support">
               <div class="card-top-meta">
                 <span class="objective-icon"><Icon :name="obj.icon" /></span>
                 <span class="bento-badge-sub">Eje Metodológico</span>
@@ -85,7 +155,9 @@ import ActionButton from '@/components/ActionButton.vue';
       </div>
     </section>
 
-    <!-- 03. Gobernanza y Control // LÁMINAS DE GALERÍA: EL MANIFIESTO DE RIGOR -->
+    <hr class="about-chapter-divider" aria-hidden="true">
+
+    <!-- 03. Gobernanza y Control // PROTOCOLO DE RIGOR Y AUDITORÍA (SIN TARJETAS) -->
     <section class="about-gallery-section" aria-labelledby="gallery-title">
       <div class="wrap">
         <div class="gallery-header" v-reveal>
@@ -94,23 +166,32 @@ import ActionButton from '@/components/ActionButton.vue';
             <span class="gallery-curation-pill">Ética &amp; Control</span>
           </div>
           <h2 id="gallery-title">La transparencia concebida con <em>rigor arquitectónico</em></h2>
-          <p class="gallery-subtitle">La confianza no es una promesa retórica; es una estructura que se construye cota por cota. Cuatro compromisos institucionales garantizan la trazabilidad, supervisión profesional y el destino íntegro de cada recurso.</p>
+          <p class="gallery-subtitle">
+            MUHU garantiza una gestión institucional transparente, con mecanismos de control interno, rendición de cuentas y trazabilidad de recursos. Cada donación recibida se destina exclusivamente a fines sociales, conforme a los estatutos de la asociación y a las normativas vigentes.
+          </p>
         </div>
 
-        <div class="gallery-plates-grid">
-          <!-- Lámina 01 -->
-          <article class="gallery-plate" v-reveal="'reveal-delay-1'">
-            <div class="plate-top-bar">
-              <span class="plate-number">I</span>
-              <span class="plate-archive-ref">PLIEGO // 01 · CONTABILIDAD</span>
+        <!-- Registro Notarial / Protocolo de Transparencia (CERO TARJETAS) -->
+        <div class="governance-ledger" v-reveal>
+          <div class="ledger-header-row" aria-hidden="true">
+            <span class="col-head col-pliego">Pliego</span>
+            <span class="col-head col-compromiso">Compromiso Institucional &amp; Alcance Técnico (Memoria Oficial)</span>
+            <span class="col-head col-aval">Garantía / Aval</span>
+          </div>
+
+          <!-- Artículo 01 -->
+          <article class="ledger-row" v-reveal="'reveal-delay-1'">
+            <div class="ledger-col-idx">
+              <span class="ledger-roman">I</span>
+              <span class="ledger-ref">PLIEGO · 01</span>
             </div>
-            <div class="plate-body">
-              <h3 class="plate-title">Sistema Contable Digital Respaldado</h3>
-              <p class="plate-copy">Registro integral y automatizado respaldado por un Contador Público Colegiado (CPC), con trazabilidad documental continua por cada aporte recibido y conciliación periódica.</p>
+            <div class="ledger-col-main">
+              <h3 class="ledger-title">Sistema Contable Digital Respaldado por CPC</h3>
+              <p class="ledger-desc">Registro con sistema contable digital respaldado por un Contador Público Colegiado (CPC) y con respaldo documentario riguroso por cada aporte recibido.</p>
             </div>
-            <div class="plate-seal-box">
-              <div class="artisan-seal">
-                <svg class="seal-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="ledger-col-seal">
+              <div class="ledger-seal">
+                <svg class="seal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   <path d="m9 12 2 2 4-4"/>
                 </svg>
@@ -119,40 +200,40 @@ import ActionButton from '@/components/ActionButton.vue';
             </div>
           </article>
 
-          <!-- Lámina 02 -->
-          <article class="gallery-plate" v-reveal="'reveal-delay-2'">
-            <div class="plate-top-bar">
-              <span class="plate-number">II</span>
-              <span class="plate-archive-ref">PLIEGO // 02 · TÉCNICA</span>
+          <!-- Artículo 02 -->
+          <article class="ledger-row" v-reveal="'reveal-delay-2'">
+            <div class="ledger-col-idx">
+              <span class="ledger-roman">II</span>
+              <span class="ledger-ref">PLIEGO · 02</span>
             </div>
-            <div class="plate-body">
-              <h3 class="plate-title">Supervisión Técnica por Colegiados</h3>
-              <p class="plate-copy">Todos los expedientes técnicos, estudios espaciales y planificaciones de obra son formulados y supervisados directamente por arquitectos e ingenieros colegiados (CIP / CAP).</p>
+            <div class="ledger-col-main">
+              <h3 class="ledger-title">Supervisión Técnica por Profesionales Colegiados</h3>
+              <p class="ledger-desc">Supervisión técnica de proyectos formulados y dirigidos en campo directamente por profesionales colegiados (arquitectos e ingenieros CIP / CAP).</p>
             </div>
-            <div class="plate-seal-box">
-              <div class="artisan-seal">
-                <svg class="seal-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="ledger-col-seal">
+              <div class="ledger-seal">
+                <svg class="seal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   <path d="m9 12 2 2 4-4"/>
                 </svg>
-                <span>Validación Colegiada</span>
+                <span>Validación CIP / CAP</span>
               </div>
             </div>
           </article>
 
-          <!-- Lámina 03 -->
-          <article class="gallery-plate" v-reveal="'reveal-delay-3'">
-            <div class="plate-top-bar">
-              <span class="plate-number">III</span>
-              <span class="plate-archive-ref">PLIEGO // 03 · RENDICIÓN</span>
+          <!-- Artículo 03 -->
+          <article class="ledger-row" v-reveal="'reveal-delay-3'">
+            <div class="ledger-col-idx">
+              <span class="ledger-roman">III</span>
+              <span class="ledger-ref">PLIEGO · 03</span>
             </div>
-            <div class="plate-body">
-              <h3 class="plate-title">Informes Periódicos de Obra y Fondos</h3>
-              <p class="plate-copy">Rendición de cuentas continua sobre avance físico y ejecución presupuestal de los proyectos, compartiendo reportes verificables y transparentes con los aliados.</p>
+            <div class="ledger-col-main">
+              <h3 class="ledger-title">Informes Periódicos de Obra y Presupuesto</h3>
+              <p class="ledger-desc">Emisión periódica de informes transparentes sobre avance físico de obra y ejecución presupuestal detallada para conocimiento de aliados y donantes.</p>
             </div>
-            <div class="plate-seal-box">
-              <div class="artisan-seal">
-                <svg class="seal-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="ledger-col-seal">
+              <div class="ledger-seal">
+                <svg class="seal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   <path d="m9 12 2 2 4-4"/>
                 </svg>
@@ -161,19 +242,19 @@ import ActionButton from '@/components/ActionButton.vue';
             </div>
           </article>
 
-          <!-- Lámina 04 -->
-          <article class="gallery-plate" v-reveal="'reveal-delay-4'">
-            <div class="plate-top-bar">
-              <span class="plate-number">IV</span>
-              <span class="plate-archive-ref">PLIEGO // 04 · ESTATUTO</span>
+          <!-- Artículo 04 -->
+          <article class="ledger-row" v-reveal="'reveal-delay-4'">
+            <div class="ledger-col-idx">
+              <span class="ledger-roman">IV</span>
+              <span class="ledger-ref">PLIEGO · 04</span>
             </div>
-            <div class="plate-body">
-              <h3 class="plate-title">Destino Exclusivo 100% Social</h3>
-              <p class="plate-copy">Cada donación recibida se destina de forma irrestricta a los fines sociales de la asociación, conforme a los estatutos fundacionales y el marco legal que rige a las entidades perceptoras.</p>
+            <div class="ledger-col-main">
+              <h3 class="ledger-title">Destino Exclusivo Social &amp; Difusión Institucional</h3>
+              <p class="ledger-desc">Cada donación recibida se destina exclusivamente a fines sociales conforme a los estatutos y normativas de la SUNAT, con publicación de resultados y testimonios en medios institucionales.</p>
             </div>
-            <div class="plate-seal-box">
-              <div class="artisan-seal">
-                <svg class="seal-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="ledger-col-seal">
+              <div class="ledger-seal">
+                <svg class="seal-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   <path d="m9 12 2 2 4-4"/>
                 </svg>
@@ -184,6 +265,8 @@ import ActionButton from '@/components/ActionButton.vue';
         </div>
       </div>
     </section>
+
+    <hr class="about-chapter-divider" aria-hidden="true">
 
     <!-- Emisión de Comprobante SUNAT (UN SOLO ENLACE AL PDF OFICIAL) -->
     <section class="receipt-section" aria-labelledby="receipt-title">
@@ -244,16 +327,21 @@ import ActionButton from '@/components/ActionButton.vue';
       </div>
     </section>
 
+    <hr class="about-chapter-divider" aria-hidden="true">
+
     <!-- 04. Equipo y Liderazgo (3 tarjetas) -->
     <section class="about-team-section" aria-labelledby="team-heading">
       <div class="wrap">
         <div class="section-header" v-reveal>
-          <p class="section-kicker">04 / Equipo y Liderazgo</p>
+          <div class="section-kicker-row">
+            <p class="section-kicker">04 / Equipo y Liderazgo</p>
+            <span class="chapter-tag tag-clay">Dirección Humana</span>
+          </div>
           <h2 id="team-heading">Las personas que impulsan este propósito</h2>
           <p class="section-subtitle">Vocación arquitectónica, articulación de recursos y compromiso con la dignidad comunitaria.</p>
         </div>
         <div class="leadership-grid">
-          <article v-for="(member, index) in team" :key="member.name" v-reveal="`reveal-delay-${index + 1}`" class="leadership-card">
+          <article v-for="(member, index) in team" :key="member.name" v-reveal="`scale reveal-delay-${index + 1}`" class="leadership-card">
             <div class="leadership-photo-wrap">
               <img :src="member.image" :alt="`Fotografía de ${member.name}`" width="480" height="420" loading="lazy" decoding="async">
               <span class="role-pill">{{ member.role }}</span>
@@ -280,6 +368,8 @@ import ActionButton from '@/components/ActionButton.vue';
         </div>
       </div>
     </section>
+
+    <hr class="about-chapter-divider" aria-hidden="true">
 
     <!-- Llamado a la acción (CTA) -->
     <section class="about-cta-section" aria-labelledby="about-cta-title">

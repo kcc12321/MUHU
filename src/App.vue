@@ -14,6 +14,7 @@ const onPageEnter = () => {
 
 <template>
   <SiteLoader />
+  <div class="site-bg-canvas" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Saltar al contenido</a>
   <SiteHeader />
   <main id="main" tabindex="-1">

@@ -27,6 +27,9 @@ const applyTokens = (el, value) => {
   value.split(/\s+/).forEach((token) => {
     if (token === "clip") el.classList.add("reveal-clip");
     else if (token === "scale") el.classList.add("reveal-scale");
+    else if (token === "left") el.classList.add("reveal-left");
+    else if (token === "right") el.classList.add("reveal-right");
+    else if (token === "fade") el.classList.add("reveal-fade");
     else el.classList.add(token);
   });
 };
