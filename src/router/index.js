@@ -5,7 +5,7 @@ import { prefersReducedMotion } from "@/composables/useReducedMotion";
 const scrollMotion = () => (prefersReducedMotion() ? "auto" : "smooth");
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   scrollBehavior(to, _from, savedPosition) {
     if (savedPosition) return savedPosition;
     if (to.hash) {
